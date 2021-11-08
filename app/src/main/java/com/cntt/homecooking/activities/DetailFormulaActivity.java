@@ -1,4 +1,4 @@
-package com.cntt.homecooking;
+package com.cntt.homecooking.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cntt.homecooking.R;
 import com.cntt.homecooking.db.DBManager;
 import com.squareup.picasso.Picasso;
 

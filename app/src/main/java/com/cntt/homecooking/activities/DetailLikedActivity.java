@@ -1,4 +1,4 @@
-package com.cntt.homecooking;
+package com.cntt.homecooking.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.cntt.homecooking.R;
 import com.cntt.homecooking.db.DBManager;
 
 public class DetailLikedActivity extends AppCompatActivity {

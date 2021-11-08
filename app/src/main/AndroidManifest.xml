@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeCooking">
         <activity
-            android:name=".DetailLikedActivity"
+            android:name=".activities.DetailLikedActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailFormulaActivity"
+            android:name=".activities.DetailFormulaActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".activities.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".model.DetailCategory"

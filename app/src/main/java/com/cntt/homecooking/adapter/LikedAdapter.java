@@ -14,12 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cntt.homecooking.DetailActivity;
-import com.cntt.homecooking.DetailLikedActivity;
+import com.cntt.homecooking.activities.DetailLikedActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.db.DBManager;
 import com.cntt.homecooking.model.LikedModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

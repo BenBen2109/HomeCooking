@@ -2,7 +2,6 @@ package com.cntt.homecooking.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +9,17 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cntt.homecooking.DetailActivity;
-import com.cntt.homecooking.DetailFormulaActivity;
+import com.cntt.homecooking.activities.DetailFormulaActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.Formula;
-import com.cntt.homecooking.model.Popular;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class FormulaAdapter extends RecyclerView.Adapter<FormulaAdapter.FormulaViewHolder> implements Filterable {
 

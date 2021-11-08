@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cntt.homecooking.DetailActivity;
+import com.cntt.homecooking.activities.DetailActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.Popular;
 import com.squareup.picasso.Picasso;
