@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.Formula;
 import com.cntt.homecooking.Home;
 import com.cntt.homecooking.Liked;
@@ -26,9 +27,12 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
                 return new Formula();
 
             case 2:
-                return new Liked();
+                return new Cart();
 
             case 3:
+                return new Liked();
+
+            case 4:
                 return  new Me();
 
             default:
@@ -39,6 +43,6 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 }

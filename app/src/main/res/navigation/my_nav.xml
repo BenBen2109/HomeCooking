@@ -25,4 +25,9 @@
         android:name="com.cntt.homecooking.Formula"
         android:label="fragment_formula"
         tools:layout="@layout/fragment_formula" />
+    <fragment
+        android:id="@+id/action_cart"
+        android:name="com.cntt.homecooking.Cart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

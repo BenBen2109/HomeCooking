@@ -58,13 +58,20 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 if(id == R.id.action_home){
                     mViewpager2.setCurrentItem(0);
-                } else if(id == R.id.action_formula){
+                }
+                else if(id == R.id.action_formula){
                     mViewpager2.setCurrentItem(1);
-                } else if(id == R.id.action_liked){
+                }
+                else if(id == R.id.action_cart){
                     mViewpager2.setCurrentItem(2);
-                } else if(id == R.id.action_me){
+                }
+                else if(id == R.id.action_liked){
                     mViewpager2.setCurrentItem(3);
                 }
+                else if(id == R.id.action_me){
+                    mViewpager2.setCurrentItem(4);
+                }
+
                 return true;
             }
         });
@@ -82,10 +89,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        mBottomNavigationView.getMenu().findItem(R.id.action_liked).setChecked(true);
+                        mBottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
                         break;
 
                     case 3:
+                        mBottomNavigationView.getMenu().findItem(R.id.action_liked).setChecked(true);
+                        break;
+
+                    case 4:
                         mBottomNavigationView.getMenu().findItem(R.id.action_me).setChecked(true);
                         break;
                 }
