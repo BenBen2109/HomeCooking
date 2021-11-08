@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.cntt.homecooking.activities.LoginActivity;
-import com.cntt.homecooking.activities.RegisterActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -14,7 +13,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent=new Intent(this, MainActivity.class);
+        Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
