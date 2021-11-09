@@ -26,8 +26,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edt_username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325.92dp"
+        android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -53,8 +53,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325.92dp"
+        android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -80,8 +80,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_tk"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325.92dp"
+        android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -107,8 +107,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_mk1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325.92dp"
+        android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -134,8 +134,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_mk2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325.92dp"
+        android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -160,8 +160,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="318dp"
+        android:layout_height="49dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
