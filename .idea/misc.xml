@@ -51,16 +51,22 @@
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/drawable/background_menupro.xml" value="0.284375" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/drawable/background_recipe.xml" value="0.4630208333333333" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/drawable/btn_1.xml" value="0.284375" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/drawable/btn_background.xml" value="0.4630208333333333" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/drawable/profile_background.xml" value="0.284375" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail.xml" value="0.17980072463768115" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail_category.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail_formula.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail_liked.xml" value="0.442481884057971" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail_product.xml" value="0.4359375" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_my_kitchen.xml" value="0.442481884057971" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/formula_item.xml" value="0.442481884057971" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_cart.xml" value="0.30570652173913043" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_formula.xml" value="0.17980072463768115" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_home.xml" value="0.4140625" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_me.xml" value="0.5" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/liked_item.xml" value="0.442481884057971" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/mykit_item.xml" value="0.442481884057971" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/menu/menu_bottom_nav.xml" value="0.2682291666666667" />
         <entry key="..\:/a/HomeCooking-Android/app/src/main/res/drawable/edt_background.xml" value="0.26614583333333336" />
         <entry key="..\:/a/HomeCooking-Android/app/src/main/res/layout/activity_detail.xml" value="0.24818840579710144" />
