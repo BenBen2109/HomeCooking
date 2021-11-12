@@ -24,15 +24,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_username"
+        android:id="@+id/reg_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="325.92dp"
         android:layout_height="55.2dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="238dp"
-        android:layout_marginBottom="437dp"
+        android:layout_marginTop="308dp"
+        android:layout_marginBottom="367.8dp"
         android:background="@drawable/rectangle_edt_1"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -58,33 +58,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="308dp"
-        android:layout_marginBottom="367.8dp"
-        android:background="@drawable/rectangle_edt_1"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:hintEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Email"
-            android:textCursorDrawable="@null" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_tk"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="325.92dp"
-        android:layout_height="55.2dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="378dp"
         android:layout_marginBottom="297.8dp"
         android:background="@drawable/rectangle_edt_1"
@@ -99,7 +72,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Tên đăng nhập"
+            android:hint="Email"
             android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-//    Nút đăng nhập sẽ sáng lên nếu Tên đăng nhập và mật khẩu đủ ký tự
+    //    Nút đăng nhập sẽ sáng lên nếu Tên đăng nhập và mật khẩu đủ ký tự
     private void enableLoginButton() {
         if(edtUsername.getEditText().getText().length()<6||edtPassword.getEditText().getText().length()<6){
             btnLogin.setEnabled(false);
@@ -112,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
             btnLogin.setTextColor(Color.parseColor("#FFFFFF"));
         }
     }
-    
 //    Ánh xạ
     private void initView() {
         edtUsername=binding.edtUsername;
