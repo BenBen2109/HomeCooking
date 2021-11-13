@@ -14,7 +14,7 @@ import retrofit2.http.GET;
 public interface ApiService {
 
 //    Cấu hình
-    String url="https://192.168.31.143:45456/";
+    String url="https://192.168.0.107:45456/";
 
     Gson gson=new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
