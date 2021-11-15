@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemt_myKitItem_layout"
+    android:id="@+id/itemt_Product_layout"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_margin="5dp"
@@ -10,7 +10,7 @@
     android:background="@drawable/edt_background">
 
     <ImageView
-        android:id="@+id/myKitItemrPic"
+        android:id="@+id/ItemProductPic"
         android:layout_width="70dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,6 +31,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toEndOf="@+id/myKitItemrPic"
+        app:layout_constraintStart_toEndOf="@+id/ItemProductPic"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
