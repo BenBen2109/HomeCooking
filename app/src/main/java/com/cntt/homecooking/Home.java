@@ -115,7 +115,7 @@ public class Home extends Fragment  {
 //        alCategory = dbManager.getAllCategory();
         thucphamAdapter = new ThucPhamAdapter(thucPhamList, mContext);
         rcvThucPham = (RecyclerView) mView.findViewById(R.id.proCate_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvThucPham.setLayoutManager(linearLayoutManager);
         rcvThucPham.setAdapter(thucphamAdapter);
 

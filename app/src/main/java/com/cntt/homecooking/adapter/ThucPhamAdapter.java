@@ -41,23 +41,32 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
             return;
         }
         holder.txtTenthucpham.setText(thucPham.getNameFood());
-        if(thucPham.getLinkHinhAnh().isEmpty()){
+        if(!thucPham.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(thucPham.getLinkHinhAnh())
                     .placeholder(R.drawable.loading)
                     .error(R.drawable.error)
+                    .fit()
                     .into(holder.imgHinhthucpham);
         }
     }
 
+    // Giới hạn số lương sản phẩm xuất hiện
     private final int limit = 6;
 
     @Override
     public int getItemCount() {
-        if(thucPhamList!=null){
+        if(thucPhamList.size() > limit){
+            return limit;
+        }
+        else
+        {
             return thucPhamList.size();
         }
-        return 0;
+//        if(thucPhamList!=null){
+//            return thucPhamList.size();
+//        }
+//        return 0;
     }
 
     //View Holder
