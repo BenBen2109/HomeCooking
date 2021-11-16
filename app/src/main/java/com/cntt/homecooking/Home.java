@@ -43,6 +43,7 @@ public class Home extends Fragment  {
     private RecyclerView rcvThucPham;
     private RecyclerView.Adapter thucphamAdapter;
     private ArrayList<ThucPham> thucPhamArrayList;
+    private List<ThucPham> thucPhamList=new ArrayList<>();
     private ArrayList<Category> alCategory;
     private RecyclerView rclPopularList;
     private ArrayList<Popular> alPopular;
@@ -112,7 +113,7 @@ public class Home extends Fragment  {
         // List Thực Phẩm
 
 //        alCategory = dbManager.getAllCategory();
-        thucphamAdapter = new ThucPhamAdapter(thucPhamArrayList, mContext);
+        thucphamAdapter = new ThucPhamAdapter(thucPhamList, mContext);
         rcvThucPham = (RecyclerView) mView.findViewById(R.id.proCate_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rcvThucPham.setLayoutManager(linearLayoutManager);
@@ -139,9 +140,9 @@ public class Home extends Fragment  {
             @Override
             public void onResponse(Call<List<ThucPham>> call, Response<List<ThucPham>> response) {
                 if(response.isSuccessful()&&response.body()!=null){
-//                    thucPhamArrayList.addAll(response.body());
-//                    thucphamAdapter.notifyDataSetChanged();
-                    Log.e("thanhcong",response.body().toString());
+                    thucPhamList.addAll(response.body());
+                    thucphamAdapter.notifyDataSetChanged();
+//                    Log.e("thanhcong",response.body().toString());
                 }
             }
 

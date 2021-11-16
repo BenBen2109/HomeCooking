@@ -41,14 +41,16 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
             return;
         }
         holder.txtTenthucpham.setText(thucPham.getNameFood());
-        if(!thucPhamList.get(position).getLinkHinhAnh().isEmpty()){
+        if(thucPham.getLinkHinhAnh().isEmpty()){
             Picasso.get()
-                    .load(thucPhamList.get(position).getLinkHinhAnh())
+                    .load(thucPham.getLinkHinhAnh())
                     .placeholder(R.drawable.loading)
                     .error(R.drawable.error)
                     .into(holder.imgHinhthucpham);
         }
     }
+
+    private final int limit = 6;
 
     @Override
     public int getItemCount() {
