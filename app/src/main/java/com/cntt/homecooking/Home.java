@@ -11,27 +11,38 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cntt.homecooking.adapter.CategoryAdapter;
 import com.cntt.homecooking.adapter.PopularAdapter;
+import com.cntt.homecooking.adapter.ThucPhamAdapter;
+import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.databinding.FragmentHomeBinding;
 import com.cntt.homecooking.db.DBManager;
 import com.cntt.homecooking.db.DBManagerDAO;
 import com.cntt.homecooking.model.Category;
 import com.cntt.homecooking.model.Formula;
 import com.cntt.homecooking.model.Popular;
+import com.cntt.homecooking.model.ThucPham;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends Fragment  {
-    private RecyclerView rclCategoryList;
-    private RecyclerView.Adapter categoryAdapter;
+    private RecyclerView rcvThucPham;
+    private RecyclerView.Adapter thucphamAdapter;
+    private ArrayList<ThucPham> thucPhamArrayList;
     private ArrayList<Category> alCategory;
     private RecyclerView rclPopularList;
     private ArrayList<Popular> alPopular;
@@ -88,37 +99,59 @@ public class Home extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
+
+
         //Truyền Data
 //        alCategory = new ArrayList<>();
 //        rclCategoryList.setHasFixedSize(true);
         mView = inflater.inflate(R.layout.fragment_home, container, false);
-        dbManager = new DBManager(mView.getContext());
+//        dbManager = new DBManager(mView.getContext());
 //        SQLiteDatabase db = dbManager.getReadableDatabase()
 
 
-        //CATEGORY VIEW
+        // List Thực Phẩm
 
 //        alCategory = dbManager.getAllCategory();
-//        categoryAdapter = new CategoryAdapter(alCategory, mContext);
-//        rclCategoryList = (RecyclerView) mView.findViewById(R.id.cate_view);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-//        rclCategoryList.setLayoutManager(linearLayoutManager);
-//        rclCategoryList.setAdapter(categoryAdapter);
+        thucphamAdapter = new ThucPhamAdapter(thucPhamArrayList, mContext);
+        rcvThucPham = (RecyclerView) mView.findViewById(R.id.proCate_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rcvThucPham.setLayoutManager(linearLayoutManager);
+        rcvThucPham.setAdapter(thucphamAdapter);
 
         //POPULAR VIEW
 
-        alPopular = dbManager.getAllPopular();
-        Collections.shuffle(alPopular);
-        popularAdapter = new PopularAdapter(alPopular, mContext);
-        rclPopularList = (RecyclerView) mView.findViewById(R.id.pop_view);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        rclPopularList.setLayoutManager(linearLayoutManager1);
-        rclPopularList.setAdapter(popularAdapter);
+//        alPopular = dbManager.getAllPopular();
+//        Collections.shuffle(alPopular);
+//        popularAdapter = new PopularAdapter(alPopular, mContext);
+//        rclPopularList = (RecyclerView) mView.findViewById(R.id.pop_view);
+//        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        rclPopularList.setLayoutManager(linearLayoutManager1);
+//        rclPopularList.setAdapter(popularAdapter);
+
+        getListThucPham();
 
         return mView;
 
     }
 
+    private void getListThucPham() {
+        ApiService.apiService.getThucPhams().enqueue(new Callback<List<ThucPham>>() {
+            @Override
+            public void onResponse(Call<List<ThucPham>> call, Response<List<ThucPham>> response) {
+                if(response.isSuccessful()&&response.body()!=null){
+//                    thucPhamArrayList.addAll(response.body());
+//                    thucphamAdapter.notifyDataSetChanged();
+                    Log.e("thanhcong",response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ThucPham>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Có lỗi xảy ra khi lấy dữ liệu", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
 
     @Override
