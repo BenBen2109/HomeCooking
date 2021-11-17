@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,14 +14,15 @@ import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPhamViewHolder>{
+public class HomeThucPhamAdapter extends RecyclerView.Adapter<HomeThucPhamAdapter.ThucPhamViewHolder>{
     private List<ThucPham> thucPhamList;
     private Context context;
 
-    public ThucPhamAdapter(List<ThucPham> thucPhamList, Context context) {
+
+
+    public HomeThucPhamAdapter(List<ThucPham> thucPhamList, Context context) {
         this.thucPhamList = thucPhamList;
         this.context = context;
     }
@@ -50,19 +50,15 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
                     .into(holder.imgHinhthucpham);
         }
     }
-
-    // Giới hạn số lương sản phẩm xuất hiện
-    private final int limit = 6;
+    // Giới hạn số lượng hiển thị
+    private int limit=5;
 
     @Override
     public int getItemCount() {
-        if(thucPhamList.size() > limit){
+        if (thucPhamList.size()>limit){
             return limit;
         }
-        else
-        {
-            return thucPhamList.size();
-        }
+        return thucPhamList.size();
 //        if(thucPhamList!=null){
 //            return thucPhamList.size();
 //        }

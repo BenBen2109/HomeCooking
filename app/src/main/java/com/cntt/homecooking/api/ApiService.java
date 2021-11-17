@@ -1,11 +1,13 @@
 package com.cntt.homecooking.api;
 
+import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.ThucPham;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.security.cert.CertificateException;
 import java.util.List;
+import java.util.Queue;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -19,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -81,13 +84,16 @@ public interface ApiService {
     }
 
 
-    //Lấy dữ liệu
+
+    //Lấy dữ liệu(GET)
 
     //Danh sách sản phẩm
     @GET("api/ThucPhams")
-    Call<List<ThucPham>> getThucPhams();
+    Call<List<ThucPham>> getListThucPhams();
 
-    //Công thức nấu ăn
+    //Danh sách công thức nấu ăn
+    @GET("api/CongThucNauAns")
+    Call<List<CongThucNauAn>> getListCongThucNauAn();
 
 
 }
