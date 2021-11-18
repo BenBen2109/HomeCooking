@@ -94,12 +94,8 @@ public class Home extends Fragment  {
 
 
 
-        //Truyền Data
-//        alCategory = new ArrayList<>();
-//        rclCategoryList.setHasFixedSize(true);
         mView = inflater.inflate(R.layout.fragment_home, container, false);
-//        dbManager = new DBManager(mView.getContext());
-//        SQLiteDatabase db = dbManager.getReadableDatabase()
+
 
 
         // List Thực Phẩm

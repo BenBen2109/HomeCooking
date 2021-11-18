@@ -39,7 +39,6 @@ public interface ApiService {
     ApiService apiService=new Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(getUnsafeOkHttpClient().build())
             .build()
             .create(ApiService.class);
 

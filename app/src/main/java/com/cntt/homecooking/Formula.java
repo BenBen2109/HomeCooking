@@ -22,27 +22,34 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.cntt.homecooking.adapter.CongThucNauAnAdapter;
 import com.cntt.homecooking.adapter.FormulaAdapter;
+import com.cntt.homecooking.adapter.HomeCongThucNauAnAdapter;
 import com.cntt.homecooking.adapter.PopularAdapter;
+import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.db.DBManager;
 import com.cntt.homecooking.db.DBManagerDAO;
 import com.cntt.homecooking.model.Category;
+import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.Popular;
 import android.app.SearchManager;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Formula extends Fragment{
     private androidx.appcompat.widget.SearchView formula_search;
-    private RecyclerView rclFormula;
-    private FormulaAdapter formulaAdapter;
-    private ArrayList<com.cntt.homecooking.model.Formula> alFormula;
-    private RecyclerView rclPopularList;
+    private List<CongThucNauAn> congthucnauanList=new ArrayList<>();
+    private RecyclerView rcvCongthucnauan;
+    private RecyclerView.Adapter congthucnauanAdapter;
     private Context mContext;
-    public DBManagerDAO dbManagerDAO;
-    public DBManager dbManager;
 
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
@@ -61,29 +68,47 @@ public class Formula extends Fragment{
         formula_search.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                formulaAdapter.getFilter().filter(query);
+//                congthucnauanAdapter.getFilter().filter(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                formulaAdapter.getFilter().filter(newText);
+//                congthucnauanAdapter.getFilter().filter(newText);
                 return true;
             }
         });
 
 
-        dbManager = new DBManager(mView.getContext());
-        setHasOptionsMenu(true);
-        alFormula = dbManager.getAllFormula();
-        formulaAdapter = new FormulaAdapter(alFormula, mContext);
-        rclFormula = (RecyclerView) mView.findViewById(R.id.rcl_formula);
+        congthucnauanAdapter = new CongThucNauAnAdapter(congthucnauanList, mContext);
+        rcvCongthucnauan = (RecyclerView) mView.findViewById(R.id.rcl_formula);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        rclFormula.setLayoutManager(linearLayoutManager1);
-        rclFormula.setAdapter(formulaAdapter);
+        rcvCongthucnauan.setLayoutManager(linearLayoutManager1);
+        rcvCongthucnauan.setAdapter(congthucnauanAdapter);
+
+        getListCongThucNauAn();
 
 
         return mView;
+    }
+
+    private void getListCongThucNauAn() {
+        ApiService.apiService.getListCongThucNauAn().enqueue(new Callback<List<CongThucNauAn>>() {
+            @Override
+            public void onResponse(Call<List<CongThucNauAn>> call, Response<List<CongThucNauAn>> response) {
+                if(response.isSuccessful()&&response.body()!=null){
+                    congthucnauanList.addAll(response.body());
+                    congthucnauanAdapter.notifyDataSetChanged();
+//                    Log.e("thanhcong1",response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CongThucNauAn>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Có lỗi xảy ra khi lấy dữ liệu", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override

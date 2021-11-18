@@ -16,15 +16,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class HomeCongThucNauAnAdapter extends RecyclerView.Adapter<HomeCongThucNauAnAdapter.CongThucNauAnViewHolder>{
-    private List<CongThucNauAn> congThucNauAnList;
-    private Context context;
-
-    public HomeCongThucNauAnAdapter(List<CongThucNauAn> congThucNauAnList, Context context) {
+public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdapter.CongThucNauAnViewHolder>{
+    public CongThucNauAnAdapter(List<CongThucNauAn> congThucNauAnList, Context context) {
         this.congThucNauAnList = congThucNauAnList;
         this.context = context;
     }
 
+    private List<CongThucNauAn> congThucNauAnList;
+    private Context context;
     @NonNull
     @Override
     public CongThucNauAnViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,26 +48,17 @@ public class HomeCongThucNauAnAdapter extends RecyclerView.Adapter<HomeCongThucN
         }
     }
 
-    // Giới hạn số lượng hiển thị
-    private int limit=5;
-
     @Override
     public int getItemCount() {
-        if (congThucNauAnList.size()>limit){
-            return limit;
+        if(congThucNauAnList!=null){
+            return congThucNauAnList.size();
         }
-        return congThucNauAnList.size();
-
-//        if(congThucNauAnList!=null){
-//            return congThucNauAnList.size();
-//        }
-//        return 0;
+        return 0;
     }
 
     public class CongThucNauAnViewHolder extends RecyclerView.ViewHolder{
         private TextView txtTencongthucnauan;
         private ImageView imgHinhcongthucnauan;
-
 
         public CongThucNauAnViewHolder(@NonNull View itemView) {
             super(itemView);
