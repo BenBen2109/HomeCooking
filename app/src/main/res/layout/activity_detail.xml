@@ -24,7 +24,7 @@
 
 
                 <ImageView
-                    android:id="@+id/detailfoodPic"
+                    android:id="@+id/detailCTPic"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/detailfoodName"
+                    android:id="@+id/detailCTName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -142,7 +142,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="Thành phần"
+                    android:text="Mô tả"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="#373b54"
@@ -157,7 +157,7 @@
                     android:background="#707070" />
 
                 <TextView
-                    android:id="@+id/formula_ingredient"
+                    android:id="@+id/detailCTMota"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
@@ -167,43 +167,7 @@
                     android:layout_marginBottom="12dp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/background_recipe">
-                <TextView
-                    android:id="@+id/txt_formula_instruct"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Hướng dẫn"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:textColor="#373b54"
-                    android:textSize="20sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#707070" />
-                <TextView
-                    android:id="@+id/formula_instruct"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="#373b54"
-                    android:layout_marginStart="25dp"
-                    android:textSize="16dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginBottom="12dp"/>
-            </LinearLayout>
+
 
 
         </LinearLayout>

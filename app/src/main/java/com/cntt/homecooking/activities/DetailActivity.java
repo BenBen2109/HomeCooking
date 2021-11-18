@@ -16,61 +16,36 @@ import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView detailfoodName, formula_ingredient, formula_instruct,idct;
+    TextView detailCTMota,detailCTName;
     LinearLayout btnliked;
-    ImageView detailfoodPic;
+    ImageView detailCTPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-
-
-
-        final DBManager db = new DBManager(this);
-
         Intent intent = getIntent();
-        final String name = intent.getStringExtra("tencongthuc");
-        final String ctcb = intent.getStringExtra("CTCB");
-        final String thanhPhan = intent.getStringExtra("thanhphan");
-        final int idct = intent.getIntExtra("idcongthuc",0);
-        final String images = intent.getStringExtra("hinhanh");
+        String tenCongThuc = intent.getStringExtra("tenCongThuc");
+        String moTaMonAn = intent.getStringExtra("moTaMonAn");
+        String linkVideo = intent.getStringExtra("linkVideo");
+        String linkHinhAnh = intent.getStringExtra("linkHinhAnh");
 
-//        Toast.makeText(this, "name"+thanhPhan, Toast.LENGTH_SHORT).show();
-
-
-
-
-        detailfoodName = findViewById(R.id.detailfoodName);
-        formula_ingredient = findViewById(R.id.formula_ingredient);
-        formula_instruct = findViewById(R.id.formula_instruct);
-        btnliked = findViewById(R.id.btnliked);
-        detailfoodPic = findViewById(R.id.detailfoodPic);
+        detailCTMota = findViewById(R.id.detailCTMota);
+        detailCTName = findViewById(R.id.detailCTName);
+        detailCTPic = findViewById(R.id.detailCTPic);
 
 
-        detailfoodName.setText(name);
-        formula_instruct.setText(ctcb);
-        formula_ingredient.setText(thanhPhan);
-        if(!images.isEmpty()){
+        detailCTName.setText(tenCongThuc);
+        detailCTMota.setText(moTaMonAn);
+
+        if(!linkHinhAnh.isEmpty()){
             Picasso.get()
-                    .load(images)
+                    .load(linkHinhAnh)
                     .placeholder(R.drawable.loading)
                     .error(R.drawable.error)
-                    .into(detailfoodPic);
+                    .into(detailCTPic);
         }
-
-        btnliked.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isInsert = db.insertLiked(name,null,idct);
-
-                if(isInsert)
-                    Toast.makeText(DetailActivity.this, "Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(DetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
 

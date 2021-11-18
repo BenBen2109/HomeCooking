@@ -1,6 +1,7 @@
 package com.cntt.homecooking.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
+import com.cntt.homecooking.activities.DetailProduct;
 import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +59,7 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
         return 0;
     }
 
-    public class ThucPhamViewHolder extends RecyclerView.ViewHolder {
+    public class ThucPhamViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView txtTenthucpham;
         private ImageView imgHinhthucpham;
 
@@ -65,6 +67,19 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
             super(itemView);
             txtTenthucpham=itemView.findViewById(R.id.popularName);
             imgHinhthucpham=itemView.findViewById(R.id.ItemProductPic);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Intent intent = new Intent(context, DetailProduct.class);
+            intent.putExtra("nameFood",thucPhamList.get(position).getNameFood());
+            intent.putExtra("price",thucPhamList.get(position).getPrice());
+            intent.putExtra("linkHinhAnh",thucPhamList.get(position).getLinkHinhAnh());
+            intent.putExtra("donViTinh",thucPhamList.get(position).getDonViTinh());
+
+            context.startActivity(intent);
         }
     }
 }

@@ -12,9 +12,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cntt.homecooking.Me;
 import com.cntt.homecooking.R;
+import com.cntt.homecooking.api.ApiService;
+
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
+import com.cntt.homecooking.model.KhachHang;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -22,12 +33,16 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout edtUsername,edtPassword;
     private Button btnLogin;
     private TextView txtError;
+    private KhachHang mKhachHang;
+
+    private List<KhachHang> mListKhachHangs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         initView();
 
@@ -97,6 +112,65 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        //
+        mListKhachHangs = new ArrayList<>();
+        getListUser();
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickLogin();
+            }
+        });
+    }
+
+    private void clickLogin() {
+        String strUsername = edtUsername.getEditText().getText().toString().trim();
+        String strPassword = edtPassword.getEditText().getText().toString().trim();
+
+
+        if(mListKhachHangs == null || mListKhachHangs.isEmpty()){
+            return;
+        }
+
+        boolean isHasUser = false;
+        for(KhachHang khachHang : mListKhachHangs){
+            if(strUsername.equals(khachHang.getEmail()) && strPassword.equals(khachHang.getPassword())){
+                isHasUser = true;
+                mKhachHang = khachHang;
+                break;
+            }
+        }
+
+        if(isHasUser){
+            //ManActivity
+            Intent in = new Intent(LoginActivity.this, Me.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("object_user", mKhachHang);
+            in.putExtras(bundle);
+            startActivity(in);
+        }else{
+            Toast.makeText(LoginActivity.this, "Username or password invalid", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getListUser() {
+        ApiService.apiService.getListKhachHangs()
+                .enqueue(new Callback<List<KhachHang>>() {
+                    @Override
+                    public void onResponse(Call<List<KhachHang>> call, Response<List<KhachHang>> response) {
+                        mListKhachHangs = response.body();
+//                        Log.e("List Users", mListKhachHangs.size() + "");
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<KhachHang>> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, "Call api Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     //    Nút đăng nhập sẽ sáng lên nếu Tên đăng nhập và mật khẩu đủ ký tự

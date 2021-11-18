@@ -1,6 +1,7 @@
 package com.cntt.homecooking.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
+import com.cntt.homecooking.activities.DetailActivity;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +58,7 @@ public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdap
         return 0;
     }
 
-    public class CongThucNauAnViewHolder extends RecyclerView.ViewHolder{
+    public class CongThucNauAnViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView txtTencongthucnauan;
         private ImageView imgHinhcongthucnauan;
 
@@ -64,6 +66,19 @@ public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdap
             super(itemView);
             txtTencongthucnauan=itemView.findViewById(R.id.popularName);
             imgHinhcongthucnauan=itemView.findViewById(R.id.ItemProductPic);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Intent intent = new Intent(context, DetailActivity.class);
+
+            intent.putExtra("tenCongThuc",congThucNauAnList.get(position).getTenCongThuc());
+            intent.putExtra("moTaMonAn",congThucNauAnList.get(position).getMoTaMonAn());
+            intent.putExtra("linkVideo",congThucNauAnList.get(position).getLinkVideo());
+            intent.putExtra("linkHinhAnh",congThucNauAnList.get(position).getLinkHinhAnh());
+            context.startActivity(intent);
         }
     }
 }

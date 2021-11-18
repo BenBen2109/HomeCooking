@@ -168,7 +168,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
+                android:weightSum="3"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp">
                 <TextView
@@ -182,13 +182,21 @@
                     android:textAlignment="center">
                 </TextView>
                 <EditText
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:background="@drawable/background_recipe">
                 </EditText>
+                <TextView
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:id="@+id/productDetailDVT"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
 

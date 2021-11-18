@@ -1,6 +1,7 @@
 package com.cntt.homecooking.api;
 
 import com.cntt.homecooking.model.CongThucNauAn;
+import com.cntt.homecooking.model.KhachHang;
 import com.cntt.homecooking.model.ThucPham;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,16 +22,15 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
 
     //Cấu hình
-//    String url="https://192.168.0.107:45456/"; //của Khánh;
+//    String url="https://192.168.0.107:45456/";
 
-//    String url="https://192.168.31.143:45455/"; // Của Duy
-
-    String url="http://www.homecooking.somee.com/";
+    String url="http://www.homecooking.somee.com"; // Của Duy
 
     Gson gson=new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -89,12 +89,16 @@ public interface ApiService {
     //Lấy dữ liệu(GET)
 
     //Danh sách sản phẩm
-    @GET("api/ThucPhams")
+    @GET("/api/ThucPhams")
     Call<List<ThucPham>> getListThucPhams();
 
     //Danh sách công thức nấu ăn
-    @GET("api/CongThucNauAns")
+    @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
+    @GET("/api/KhachHangs")
+    Call<List<KhachHang>> getListKhachHangs();
 
+    @GET("/api/KhachHangs/{id}")
+    Call<KhachHang> getKhachHangs(@Path("id") String id);
 }

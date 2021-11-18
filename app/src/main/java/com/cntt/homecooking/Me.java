@@ -14,13 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cntt.homecooking.activities.LoginActivity;
 import com.cntt.homecooking.databinding.FragmentMeBinding;
+import com.cntt.homecooking.model.KhachHang;
 
 
 public class Me extends Fragment  {
     private FragmentMeBinding binding;
 
-
+    TextView user_name,txt1;
 
     private View mView;
 
@@ -29,6 +31,24 @@ public class Me extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMeBinding.inflate(inflater,container,false);
 
+        user_name=binding.userName;
+
+        user_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), LoginActivity.class);
+                startActivity(in);
+            }
+        });
+
+        txt1 = binding.txt1;
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if(bundle != null){
+            KhachHang khachHang = (KhachHang) bundle.get("object_user");
+            if(khachHang != null){
+                txt1.setText(khachHang.getName());
+            }
+        }
 
         return binding.getRoot();
     }
