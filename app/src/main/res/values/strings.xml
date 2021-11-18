@@ -2,7 +2,7 @@
     <string name="app_name">Home Cooking</string>
     <string name="action_home">Home</string>
     <string name="action_formula">Công Thức</string>
-    <string name="action_liked">Đã Thích</string>
+    <string name="action_product">Sản Phẩm</string>
     <string name="action_me">Tôi</string>
     <string name="action_cart">Giỏ Hàng</string>
     <!-- TODO: Remove or change this placeholder text -->

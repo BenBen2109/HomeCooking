@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.Formula;
 import com.cntt.homecooking.Home;
-import com.cntt.homecooking.Liked;
+import com.cntt.homecooking.Product;
 import com.cntt.homecooking.Me;
 
 public class MyViewPagerAdapter extends FragmentStateAdapter {
@@ -24,13 +24,13 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
                 return new Home();
 
             case 1:
-                return new Formula();
+                return new Product();
 
             case 2:
-                return new Cart();
+                return new Formula();
 
             case 3:
-                return new Liked();
+                return new Cart();
 
             case 4:
                 return  new Me();

@@ -11,10 +11,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/action_liked"
-        android:name="com.cntt.homecooking.Liked"
+        android:id="@+id/action_product"
+        android:name="com.cntt.homecooking.Product"
         android:label="fragment_liked"
-        tools:layout="@layout/fragment_liked" />
+        tools:layout="@layout/fragment_product" />
     <fragment
         android:id="@+id/action_me"
         android:name="com.cntt.homecooking.Me"

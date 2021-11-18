@@ -1,7 +1,6 @@
 package com.cntt.homecooking;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,15 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cntt.homecooking.adapter.LikedAdapter;
-import com.cntt.homecooking.adapter.PopularAdapter;
 import com.cntt.homecooking.db.DBManager;
-import com.cntt.homecooking.model.Category;
 import com.cntt.homecooking.model.LikedModel;
 
 import java.util.ArrayList;
 
 
-public class Liked extends Fragment {
+public class Product extends Fragment {
 
 
     private View mView;
@@ -38,9 +35,9 @@ public class Liked extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_liked, container, false);
+        mView = inflater.inflate(R.layout.fragment_product, container, false);
 
-        likedrecycleview= mView.findViewById(R.id.likedrecycleview);
+        likedrecycleview= mView.findViewById(R.id.rcl_product);
 
 
 
@@ -57,21 +54,21 @@ public class Liked extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         likedrecycleview.setLayoutManager(layoutManager);
 
-        swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ArrayList<LikedModel> list = db.getLiked();
-                LikedAdapter adapter = new LikedAdapter(list,mContext);
-                likedrecycleview.setAdapter(adapter);
-
-
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                likedrecycleview.setLayoutManager(layoutManager);
-                adapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+//        swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                ArrayList<LikedModel> list = db.getLiked();
+//                LikedAdapter adapter = new LikedAdapter(list,mContext);
+//                likedrecycleview.setAdapter(adapter);
+//
+//
+//                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//                likedrecycleview.setLayoutManager(layoutManager);
+//                adapter.notifyDataSetChanged();
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
 
 
         return mView;

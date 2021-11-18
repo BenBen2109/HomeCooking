@@ -3,15 +3,19 @@
     <item android:id="@+id/action_home"
         android:title="@string/action_home"
         android:icon="@drawable/outline_home_black_48"/>
+
+    <item android:id="@+id/action_product"
+        android:title="@string/action_product"
+        android:icon="@drawable/icons8_product_90"/>
+
     <item android:id="@+id/action_formula"
         android:title="@string/action_formula"
         android:icon="@drawable/outline_list_alt_black_48"/>
+
     <item android:id="@+id/action_cart"
         android:title="@string/action_cart"
         android:icon="@drawable/outline_shopping_cart_black_48"/>
-    <item android:id="@+id/action_liked"
-        android:title="@string/action_liked"
-        android:icon="@drawable/outline_favorite_black_48"/>
+
     <item android:id="@+id/action_me"
         android:title="@string/action_me"
         android:icon="@drawable/outline_person_black_48"/>

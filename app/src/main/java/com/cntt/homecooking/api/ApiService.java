@@ -26,9 +26,11 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //Cấu hình
-//    String url="https://192.168.0.107:45456/";
+//    String url="https://192.168.0.107:45456/"; //của Khánh;
 
-    String url="https://192.168.31.143:45455/"; // Của Duy
+//    String url="https://192.168.31.143:45455/"; // Của Duy
+
+    String url="http://www.homecooking.somee.com/";
 
     Gson gson=new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")

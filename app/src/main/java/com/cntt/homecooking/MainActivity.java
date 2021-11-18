@@ -2,27 +2,15 @@ package com.cntt.homecooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.widget.EditText;
 
-import com.cntt.homecooking.adapter.CategoryAdapter;
 import com.cntt.homecooking.adapter.MyViewPagerAdapter;
-import com.cntt.homecooking.model.Category;
 import com.cntt.homecooking.model.Formula;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -59,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 if(id == R.id.action_home){
                     mViewpager2.setCurrentItem(0);
                 }
-                else if(id == R.id.action_formula){
+                else if(id == R.id.action_product){
                     mViewpager2.setCurrentItem(1);
                 }
-                else if(id == R.id.action_cart){
+                else if(id == R.id.action_formula){
                     mViewpager2.setCurrentItem(2);
                 }
-                else if(id == R.id.action_liked){
+                else if(id == R.id.action_cart){
                     mViewpager2.setCurrentItem(3);
                 }
                 else if(id == R.id.action_me){
@@ -85,15 +73,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 1:
-                        mBottomNavigationView.getMenu().findItem(R.id.action_formula).setChecked(true);
+                        mBottomNavigationView.getMenu().findItem(R.id.action_product).setChecked(true);
                         break;
 
                     case 2:
-                        mBottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
+                        mBottomNavigationView.getMenu().findItem(R.id.action_formula).setChecked(true);
                         break;
 
                     case 3:
-                        mBottomNavigationView.getMenu().findItem(R.id.action_liked).setChecked(true);
+                        mBottomNavigationView.getMenu().findItem(R.id.action_cart).setChecked(true);
                         break;
 
                     case 4:
