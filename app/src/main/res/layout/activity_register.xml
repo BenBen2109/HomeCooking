@@ -44,6 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:singleLine="true"
             android:hint="Họ và tên"
             android:textCursorDrawable="@null" />
 
@@ -71,6 +72,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"
             android:hint="Email"
             android:textCursorDrawable="@null" />
 
@@ -90,6 +93,7 @@
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/reg_mk2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +102,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:singleLine="true"
             android:hint="Mật khẩu"
+            android:inputType="textPassword"
             android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +123,7 @@
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -124,6 +131,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:singleLine="true"
+            android:inputType="textPassword"
             android:hint="Xác nhận mật khẩu"
             android:textCursorDrawable="@null" />
 
@@ -139,14 +148,15 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="609dp"
         android:layout_marginBottom="73dp"
-        android:background="@drawable/rectangle_btn_login"
+        android:background="@drawable/rectangle_btn_login_disable"
         android:backgroundTint="@null"
         android:fontFamily="@font/raleway_bold"
         android:text="Đăng ký tài khoản"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="#858585"
         android:textSize="20sp"
         app:backgroundTint="@null"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
