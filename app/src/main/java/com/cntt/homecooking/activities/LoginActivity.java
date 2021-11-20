@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,13 +49,13 @@ public class LoginActivity extends AppCompatActivity {
 
         initView();
 
-//        Xử lý EditText Tên đăng nhập
+        // Xử lý EditText Email
         edtUsername.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                Báo lỗi nếu số ký tự ở Tên đăng nhập ít hơn 6
-                if(s.length()<6){
-                    txtError.setText("Tên đăng nhập phải có từ 6 kí tự trở lên");
+                // Kiểm tra định dạng email
+                if(!Patterns.EMAIL_ADDRESS.matcher(s).matches()){
+                    txtError.setText("Không đúng định dạng email");
                     edtUsername.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
                 }
                 else{
@@ -72,11 +75,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        Xử lý EditText Mật khẩu
+        // Xử lý EditText Mật khẩu
         edtPassword.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                Báo lỗi nếu số ký tự ở Mật khẩu ít hơn 6
+                // Báo lỗi nếu số ký tự ở Mật khẩu ít hơn 6
                 if(s.length()<6){
                     txtError.setText("Mật khẩu phải có từ 6 kí tự trở lên");
                     edtPassword.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
@@ -99,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        //        Xử lý nút đăng nhập bằng tài khoản
+        // Xử lý nút đăng nhập bằng tài khoản
         mListKhachHangs = new ArrayList<>();
         getListUser();
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-//        Chuyển sang màn hình đăng ký tài khoản khi ấn đăng ký
+        // Chuyển sang màn hình đăng ký tài khoản khi ấn đăng ký
         binding.txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,9 +171,9 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    //    Nút đăng nhập sẽ sáng lên nếu Tên đăng nhập và mật khẩu đủ ký tự
+    //    Nút đăng nhập sẽ sáng lên nếu đủ điều kiện
     private void enableLoginButton() {
-        if(edtUsername.getEditText().getText().length()<6||edtPassword.getEditText().getText().length()<6){
+        if(edtPassword.getEditText().getText().length()<6||Patterns.EMAIL_ADDRESS.matcher(edtUsername.getEditText().getText()).matches()){
             btnLogin.setEnabled(false);
             btnLogin.setBackground(getDrawable(R.drawable.rectangle_btn_login_disable));
             btnLogin.setTextColor(Color.parseColor("#858585"));

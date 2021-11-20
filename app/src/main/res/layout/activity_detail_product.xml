@@ -181,14 +181,19 @@
                     android:textColor="@color/black"
                     android:textAlignment="center">
                 </TextView>
+
                 <EditText
-                    android:layout_weight="1.5"
+                    android:id="@+id/edt_soluong"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/background_recipe"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="1"
                     android:textSize="20sp"
-                    android:background="@drawable/background_recipe">
-                </EditText>
+                    android:textStyle="bold"
+                    tools:ignore="TouchTargetSizeCheck"></EditText>
                 <TextView
                     android:gravity="center"
                     android:textColor="@color/black"
@@ -201,7 +206,7 @@
 
 
             <Button
-                android:id="@+id/btnAddToCart"
+                android:id="@+id/btn_add_to_cart"
                 android:layout_marginTop="10dp"
                 android:textColor="#F1EFEB"
                 android:layout_width="380dp"

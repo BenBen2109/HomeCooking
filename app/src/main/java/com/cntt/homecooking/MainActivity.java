@@ -9,17 +9,19 @@ import android.view.MenuItem;
 
 import com.cntt.homecooking.adapter.MyViewPagerAdapter;
 import com.cntt.homecooking.model.Formula;
+import com.cntt.homecooking.model.GioHang;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager2 mViewpager2;
     private BottomNavigationView mBottomNavigationView;
-    private ArrayList<Formula> alFormula;
+    public static List<GioHang> gioHangList;
 
 
 
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(gioHangList.isEmpty()){
+            gioHangList=new ArrayList<>();
+        }
 
 
 
