@@ -92,13 +92,21 @@ public interface ApiService {
     @GET("/api/ThucPhams")
     Call<List<ThucPham>> getListThucPhams();
 
+    @GET("/api/ThucPhams/{id}")
+    Call<ThucPham> getThucPhams(@Path("id") String id);
+
     //Danh sách công thức nấu ăn
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
     @GET("/api/KhachHangs")
-    Call<List<KhachHang>> getListKhachHangs();
+    Call<List<KhachHang>> dangNhapKhachHangs();
 
-    @GET("/api/KhachHangs/{id}")
-    Call<KhachHang> getKhachHangs(@Path("id") String id);
+    @GET("/api/KhachHangs")
+    Call<KhachHang> getKhachHangs(
+            @Query("email") String email,
+            @Query("password") String password);
+
+
+
 }

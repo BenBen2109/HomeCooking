@@ -97,13 +97,20 @@ public class LoginActivity extends AppCompatActivity {
                 enableLoginButton();
             }
         });
-//        Xử lý nút đăng nhập bằng tài khoản
+
+
+        //        Xử lý nút đăng nhập bằng tài khoản
+        mListKhachHangs = new ArrayList<>();
+        getListUser();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                clickLogin();
             }
         });
+
+
+
 //        Chuyển sang màn hình đăng ký tài khoản khi ấn đăng ký
         binding.txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,18 +120,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        //
-        mListKhachHangs = new ArrayList<>();
-        getListUser();
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickLogin();
-            }
-        });
     }
 
     private void clickLogin() {
@@ -147,23 +142,23 @@ public class LoginActivity extends AppCompatActivity {
 
         if(isHasUser){
             //ManActivity
-            Intent in = new Intent(LoginActivity.this, Me.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("object_user", mKhachHang);
-            in.putExtras(bundle);
-            startActivity(in);
+//            Intent in = new Intent(LoginActivity.this, Me.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("object_user", mKhachHang);
+//            in.putExtras(bundle);
+//            startActivity(in);
+            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(LoginActivity.this, "Username or password invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void getListUser() {
-        ApiService.apiService.getListKhachHangs()
+        ApiService.apiService.dangNhapKhachHangs()
                 .enqueue(new Callback<List<KhachHang>>() {
                     @Override
                     public void onResponse(Call<List<KhachHang>> call, Response<List<KhachHang>> response) {
                         mListKhachHangs = response.body();
-//                        Log.e("List Users", mListKhachHangs.size() + "");
                     }
 
                     @Override
