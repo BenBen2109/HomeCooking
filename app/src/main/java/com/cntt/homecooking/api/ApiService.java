@@ -2,6 +2,8 @@ package com.cntt.homecooking.api;
 
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.KhachHang;
+import com.cntt.homecooking.model.RegisterRequest;
+import com.cntt.homecooking.model.RegisterResponse;
 import com.cntt.homecooking.model.ThucPham;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +23,9 @@ import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -41,6 +45,7 @@ public interface ApiService {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
+
 
     // Fix "Trust anchor for certificate path not found"
     public static OkHttpClient.Builder getUnsafeOkHttpClient() {
@@ -102,10 +107,8 @@ public interface ApiService {
     @GET("/api/KhachHangs")
     Call<List<KhachHang>> dangNhapKhachHangs();
 
-    @GET("/api/KhachHangs")
-    Call<KhachHang> getKhachHangs(
-            @Query("email") String email,
-            @Query("password") String password);
+    @POST("/api/KhachHangs")
+    Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
 
 
