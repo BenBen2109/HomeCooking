@@ -204,7 +204,6 @@
                     android:layout_marginBottom="12dp"/>
             </LinearLayout>
 
-
             <Button
                 android:id="@+id/btn_detail_formula_cook"
                 android:layout_width="380dp"
@@ -221,4 +220,6 @@
 
         </LinearLayout>
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

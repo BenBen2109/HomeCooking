@@ -47,6 +47,7 @@ public class FormulaAdapter extends RecyclerView.Adapter<FormulaAdapter.FormulaV
     public void onBindViewHolder(@NonNull FormulaViewHolder holder, int position) {
         holder.formulaName.setText(String.valueOf(alFormula.get(position).getTenCongThuc()));
 //        holder.formulaPic.setImageResource(Integer.valueOf(alFormula.get(position).getHinhAnh()));
+
         if(!alFormula.get(position).getHinhAnh().isEmpty()){
             Picasso.get()
                     .load(alFormula.get(position).getHinhAnh())

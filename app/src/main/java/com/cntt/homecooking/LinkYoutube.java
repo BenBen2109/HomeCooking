@@ -3,6 +3,7 @@ package com.cntt.homecooking;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -19,7 +20,6 @@ public class LinkYoutube extends YouTubeBaseActivity {
 
     private YouTubePlayerView youTubePlayerView;
 
-    String videoLink = "https://www.youtube.com/embed/ZhYaRAcrUGI";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,9 @@ public class LinkYoutube extends YouTubeBaseActivity {
         setContentView(R.layout.activity_link_youtube);
         initView();
 
+
+        Intent in =getIntent();
+        String videoLink = in.getStringExtra("linkVideo");
 
         //Cắt ra id của video youtube
         String[] link=videoLink.split("embed/");

@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail.xml" value="0.12708333333333333" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_formula.xml" value="0.13134057971014493" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_product.xml" value="0.12708333333333333" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_link_youtube.xml" value="0.21105072463768115" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_register.xml" value="0.2164855072463768" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_formula.xml" value="0.2056159420289855" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_cart.xml" value="0.37864583333333335" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_category.xml" value="0.37864583333333335" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_itempro.xml" value="0.21510416666666668" />

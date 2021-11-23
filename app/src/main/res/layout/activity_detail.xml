@@ -166,8 +166,18 @@
                     android:textColor="#373b54"
                     android:layout_marginBottom="12dp"/>
             </LinearLayout>
-
-
+            <Button
+                android:id="@+id/linkVideo"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Video hướng dẫn"
+                android:textSize="26sp"
+                android:background="@drawable/btn_background"
+                android:textColor="@color/white"
+                android:textStyle="bold">
+            </Button>
 
 
         </LinearLayout>

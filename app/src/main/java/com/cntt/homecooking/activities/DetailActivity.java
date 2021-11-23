@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cntt.homecooking.LinkYoutube;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.db.DBManager;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
+    Button linkYTVideo;
 
     TextView detailCTMota,detailCTName;
     LinearLayout btnliked;
@@ -34,6 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         detailCTMota = findViewById(R.id.detailCTMota);
         detailCTName = findViewById(R.id.detailCTName);
         detailCTPic = findViewById(R.id.detailCTPic);
+        linkYTVideo = findViewById(R.id.linkVideo);
 
 
         detailCTName.setText(tenCongThuc);
@@ -47,6 +51,14 @@ public class DetailActivity extends AppCompatActivity {
                     .into(detailCTPic);
         }
 
+        linkYTVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(DetailActivity.this, LinkYoutube.class);
+                in.putExtra("linkVideo",linkVideo);
+                startActivity(in);
+            }
+        });
 
 
     }
