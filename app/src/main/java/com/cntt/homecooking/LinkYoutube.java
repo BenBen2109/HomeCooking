@@ -9,6 +9,7 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.cntt.homecooking.api.GoogleAPI;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -48,7 +49,7 @@ public class LinkYoutube extends YouTubeBaseActivity {
         };
 
         //Truyền Api Key
-        youTubePlayerView.initialize("AIzaSyAN8E7JcTqEIsX8wVLulX3aLxXKH1jqJNQ",listener);
+        youTubePlayerView.initialize(GoogleAPI.getYoutubeApiKey(),listener);
 
     }
 
