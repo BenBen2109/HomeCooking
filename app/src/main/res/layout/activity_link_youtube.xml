@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LinkYoutube">
-    <VideoView
-        android:id="@+id/formula_video"
-        android:layout_width="match_parent"
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:layout_width="wrap_content"
         android:layout_height="250dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:autoPlay="true"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
-    </VideoView>
+        app:showYouTubeButton="false"
+        app:videoId="vaP1BKiN_Lg">
+    </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
