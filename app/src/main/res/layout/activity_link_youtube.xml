@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".LinkYoutube">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:layout_width="wrap_content"
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/formula_video"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:autoPlay="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:showYouTubeButton="false"
-        app:videoId="vaP1BKiN_Lg">
-    </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+        app:layout_constraintTop_toTopOf="parent">
+    </com.google.android.youtube.player.YouTubePlayerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
