@@ -51,9 +51,9 @@ public class LinkYoutube extends YouTubeBaseActivity {
         YouTubePlayer.OnInitializedListener listener=new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                // Chèo id
+                // Chèn id
                 youTubePlayer.loadVideo(videoid);
-                //Tự động play
+                // Tự động play
                 youTubePlayer.play();
             }
 

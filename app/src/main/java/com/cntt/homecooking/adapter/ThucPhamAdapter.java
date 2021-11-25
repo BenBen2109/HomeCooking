@@ -74,6 +74,7 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
         public void onClick(View v) {
             int position = getAdapterPosition();
             Intent intent = new Intent(context, DetailProduct.class);
+            intent.putExtra("idFood",thucPhamList.get(position).getIdFood());
             intent.putExtra("nameFood",thucPhamList.get(position).getNameFood());
             intent.putExtra("price",thucPhamList.get(position).getPrice());
             intent.putExtra("linkHinhAnh",thucPhamList.get(position).getLinkHinhAnh());

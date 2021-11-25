@@ -32,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if(gioHangList.isEmpty()){
-//            gioHangList=new ArrayList<>();
-//        }
+        if(gioHangList!=null){
+
+        }
+        else{
+            gioHangList=new ArrayList<>();
+        };
 
 
 
