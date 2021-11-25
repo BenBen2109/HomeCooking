@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.cntt.homecooking.activities.DetailActivity;
 import com.cntt.homecooking.api.GoogleAPI;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -19,13 +22,22 @@ import com.google.android.youtube.player.YouTubePlayerView;
 public class LinkYoutube extends YouTubeBaseActivity {
 
     private YouTubePlayerView youTubePlayerView;
-
+    Button btn_danau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_youtube);
         initView();
+
+        btn_danau = findViewById(R.id.btn_danau);
+        btn_danau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinkYoutube.this, DetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         Intent in =getIntent();

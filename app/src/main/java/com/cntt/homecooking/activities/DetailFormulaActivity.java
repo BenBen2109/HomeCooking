@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cntt.homecooking.LinkYoutube;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.db.DBManager;
 import com.squareup.picasso.Picasso;
@@ -19,10 +21,12 @@ public class DetailFormulaActivity extends AppCompatActivity {
     TextView formula_ingredient,detailformulaName,formula_instruct;
     ImageView detailfoodPic;
     LinearLayout btnlikedf;
+    Button btn_detail_formula_cook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_formula);
+
 
         final DBManager db = new DBManager(this);
 
@@ -65,5 +69,6 @@ public class DetailFormulaActivity extends AppCompatActivity {
                     Toast.makeText(DetailFormulaActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

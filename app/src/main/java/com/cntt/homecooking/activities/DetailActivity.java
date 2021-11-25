@@ -22,11 +22,11 @@ public class DetailActivity extends AppCompatActivity {
     TextView detailCTMota,detailCTName;
     LinearLayout btnliked;
     ImageView detailCTPic;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
 
         Intent intent = getIntent();
         String tenCongThuc = intent.getStringExtra("tenCongThuc");

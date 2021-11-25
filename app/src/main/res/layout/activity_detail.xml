@@ -69,7 +69,18 @@
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
-
+            <Button
+                android:id="@+id/btn_detail_formula_cook"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Nấu"
+                android:textSize="26sp"
+                android:background="@drawable/btn_background"
+                android:textColor="@color/white"
+                android:textStyle="bold">
+            </Button>
 
                     <LinearLayout
                         android:layout_width="0dp"

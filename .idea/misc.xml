@@ -3,12 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail.xml" value="0.12708333333333333" />
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_formula.xml" value="0.13134057971014493" />
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_product.xml" value="0.12708333333333333" />
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_link_youtube.xml" value="0.21105072463768115" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_register.xml" value="0.2164855072463768" />
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_formula.xml" value="0.2056159420289855" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_cart.xml" value="0.37864583333333335" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_category.xml" value="0.37864583333333335" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_itempro.xml" value="0.21510416666666668" />
@@ -91,9 +86,11 @@
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_detail_liked.xml" value="0.3703125" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_link_youtube.xml" value="0.359375" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/activity_main.xml" value="0.3703125" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_cart.xml" value="0.328125" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_formula.xml" value="0.17980072463768115" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_home.xml" value="0.3703125" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/fragment_liked.xml" value="0.3703125" />
+        <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/layout/item_cart.xml" value="0.328125" />
         <entry key="..\:/Users/lduyk/Downloads/HomeCooking-Android/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3703125" />
         <entry key="..\:/a/HomeCooking-Android/app/src/main/res/drawable/edt_background.xml" value="0.26614583333333336" />
         <entry key="..\:/a/HomeCooking-Android/app/src/main/res/layout/activity_detail.xml" value="0.24818840579710144" />
