@@ -66,6 +66,5 @@
         app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toEndOf="@+id/popularName"
         app:layout_constraintTop_toBottomOf="@id/popularSoLuong"
-
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
