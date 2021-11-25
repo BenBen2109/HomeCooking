@@ -22,14 +22,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:paddingStart="16dp"
-                android:text="My cart"
+                android:text="Giỏ Hàng Của Tôi"
                 android:textAlignment="viewStart"
                 android:textColor="#f87529"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cart_view"
+                android:id="@+id/cart_rclview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -51,17 +51,17 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txtitemtotal"
+                        android:id="@+id/txtTongGia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Items Total:"
+                        android:text="Tổng Giá Sản Phẩm:"
                         android:textColor="#373b54"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/priceitemtotal"
+                        android:id="@+id/priceTongSanPham"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$0"
@@ -109,17 +109,17 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txtdeli"
+                        android:id="@+id/txtShip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Delivery Services:"
+                        android:text="Giá Ship:"
                         android:textColor="#373b54"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/pricedeli"
+                        android:id="@+id/priceShip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$0"
@@ -148,17 +148,17 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textTongTien"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Total:"
+                        android:text="Tổng Tiền:"
                         android:textColor="#373b54"
                         android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/textPriceTongTien"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$0"
@@ -175,10 +175,10 @@
                 android:background="@drawable/orange_btn_background">
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/btnThanhToan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckOut"
+                    android:text="Thanh Toán"
                     android:textColor="#ffffff"
                     android:textSize="25sp"
                     android:textStyle="bold"
