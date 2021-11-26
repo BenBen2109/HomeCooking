@@ -7,4 +7,10 @@
     <string name="action_cart">Giỏ Hàng</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="phuongthucthanhtoan">
+        <item>Thanh Toán Trực Tiếp</item>
+        <item>PayPal</item>
+    </string-array>
+
 </resources>
