@@ -1,25 +1,32 @@
 package com.cntt.homecooking.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chauthai.swipereveallayout.SwipeRevealLayout;
+import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
 
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangViewHolder>{
     private List<GioHang> gioHangList;
+    private ViewBinderHelper viewBinderHelper=new ViewBinderHelper();
     private Context context;
 
     public GioHangAdapter(List<GioHang> gioHangList, Context context) {
@@ -40,8 +47,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         if(gioHang==null){
             return;
         }
+        viewBinderHelper.bind(holder.swipeRevealLayout, gioHang.getIdFood());
+
         holder.txttensanpham.setText(gioHang.getNameFood());
-        holder.txtgiasanpham.setText(""+gioHang.getPrice());
+        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+        holder.txtgiasanpham.setText(decimalFormat.format(gioHang.getPrice())+" đ");
         holder.edtsoluong.setText(""+gioHang.getSoluong());
         if(!gioHang.getLinkHinhAnh().isEmpty()){
             Picasso.get()
@@ -51,6 +61,33 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                     .fit()
                     .into(holder.imghinhsanpham);
         }
+        holder.layoutDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               xoasanpham();
+            }
+
+            private void xoasanpham() {
+                AlertDialog.Builder alertdialog=new AlertDialog.Builder(context);
+                alertdialog.setTitle("Xóa sản phẩm");
+                alertdialog.setMessage("Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng không?");
+                alertdialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        gioHangList.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                    }
+                });
+
+                alertdialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertdialog.show();
+            }
+        });
     }
 
     @Override
@@ -65,6 +102,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         private TextView txttensanpham,txtgiasanpham;
         private EditText edtsoluong;
         private ImageView imghinhsanpham;
+        private SwipeRevealLayout swipeRevealLayout;
+        private LinearLayout layoutDelete;
 
         public GioHangViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +111,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
             txtgiasanpham=itemView.findViewById(R.id.popularGia);
             edtsoluong=itemView.findViewById(R.id.popularSoLuong);
             imghinhsanpham=itemView.findViewById(R.id.ItemProductPic);
-
+            swipeRevealLayout=itemView.findViewById(R.id.swipeRevealLayout);
+            layoutDelete=itemView.findViewById(R.id.layoutDelete);
         }
     }
 }
