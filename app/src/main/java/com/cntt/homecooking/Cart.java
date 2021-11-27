@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ import java.util.List;
 // */
 public class Cart extends Fragment {
 
-
+    SwipeRefreshLayout swipeRefreshLayout;
     private View mView;
     private RecyclerView rcvGiohang;
     private RecyclerView.Adapter giohangAdapter;
@@ -47,8 +48,25 @@ public class Cart extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
         rcvGiohang.setAdapter(giohangAdapter);
+
+
         initView();
         tinhtongtien();
+
+        swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+                rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                rcvGiohang.setLayoutManager(linearLayoutManager);
+                rcvGiohang.setAdapter(giohangAdapter);
+                tinhtongtien();
+                giohangAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         return mView;
     }
