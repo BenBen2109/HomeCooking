@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cntt.homecooking.adapter.GioHangAdapter;
 import com.cntt.homecooking.adapter.ThucPhamAdapter;
+import com.cntt.homecooking.databinding.FragmentHomeBinding;
 import com.cntt.homecooking.model.GioHang;
 import com.cntt.homecooking.model.ThucPham;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class Cart extends Fragment {
     private View mView;
     private RecyclerView rcvGiohang;
     private RecyclerView.Adapter giohangAdapter;
+    private static TextView txtTongtien;
     private Context mContext;
 
     @Override
@@ -43,8 +47,23 @@ public class Cart extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
         rcvGiohang.setAdapter(giohangAdapter);
+        initView();
+        tinhtongtien();
 
         return mView;
+    }
+
+    private void initView() {
+        txtTongtien=mView.findViewById(R.id.textPriceTongTien);
+    }
+
+    public static void tinhtongtien() {
+        int tongtien=0;
+        for (int i=0;i<MainActivity.gioHangList.size();i++){
+            tongtien+=MainActivity.gioHangList.get(i).getPrice();
+        }
+        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+        txtTongtien.setText(decimalFormat.format(tongtien)+" đ");
     }
 
     @Override

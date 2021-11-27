@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
+import com.cntt.homecooking.adapter.GioHangAdapter;
 import com.cntt.homecooking.databinding.ActivityDetailProductBinding;
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
@@ -41,8 +42,9 @@ public class DetailProduct extends AppCompatActivity {
         linkHinhAnh = intent.getStringExtra("linkHinhAnh");
         donViTinh = intent.getStringExtra("donViTinh");
 
+
         detailProductName.setText(name);
-        productPrice.setText(""+price);
+        productPrice.setText(price+" đ");
         productDetailDVT.setText(donViTinh);
         if(!linkHinhAnh.isEmpty()){
             Picasso.get()
@@ -77,12 +79,12 @@ public class DetailProduct extends AppCompatActivity {
             }
             if (tontai==false){
                 sotien=soluong*price;
-                MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,price));
+                MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
             }
         }
         else {
             sotien=soluong*price;
-            MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,price));
+            MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
         }
         Toast.makeText(DetailProduct.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
     }

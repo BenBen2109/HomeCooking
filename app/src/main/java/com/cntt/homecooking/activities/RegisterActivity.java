@@ -68,7 +68,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                // Báo lỗi nếu số ký tự ở Họ tên ít hơn 6
+                if(charSequence.length()<6){
+                    txtError.setText("Họ tên phải có từ 6 kí tự trở lên");
+                    edtName.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtName.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override
@@ -102,7 +110,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                // Kiểm tra định dạng email
+                if(!Patterns.EMAIL_ADDRESS.matcher(charSequence).matches()){
+                    txtError.setText("Không đúng định dạng email");
+                    edtEmail.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtEmail.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override
@@ -136,7 +152,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                // Báo lỗi nếu số ký tự ở Mật khẩu ít hơn 6
+                if(charSequence.length()<6){
+                    txtError.setText("Mật khẩu phải có từ 6 kí tự trở lên");
+                    edtPassword1.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtPassword1.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override
@@ -170,7 +194,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                // Kiểm tra trùng mật khẩu
+                if(!charSequence.toString().equals(edtPassword1.getEditText().getText().toString().trim())){
+                    txtError.setText("Mật khẩu xác nhận không đúng");
+                    edtPassword2.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtPassword2.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override

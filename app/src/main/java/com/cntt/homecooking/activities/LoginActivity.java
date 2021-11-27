@@ -66,7 +66,15 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // Kiểm tra định dạng email
+                if(!Patterns.EMAIL_ADDRESS.matcher(s).matches()){
+                    txtError.setText("Không đúng định dạng email");
+                    edtUsername.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtUsername.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override
@@ -101,7 +109,15 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // Báo lỗi nếu số ký tự ở Mật khẩu ít hơn 6
+                if(s.length()<6){
+                    txtError.setText("Mật khẩu phải có từ 6 kí tự trở lên");
+                    edtPassword.setBackground(getDrawable(R.drawable.rectangle_edt_1_error));
+                }
+                else{
+                    txtError.setText("");
+                    edtPassword.setBackground(getDrawable(R.drawable.rectangle_edt_1));
+                }
             }
 
             @Override
