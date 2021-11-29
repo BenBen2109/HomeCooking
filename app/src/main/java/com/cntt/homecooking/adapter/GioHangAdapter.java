@@ -1,11 +1,13 @@
 package com.cntt.homecooking.adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,7 +54,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         holder.txttensanpham.setText(gioHang.getNameFood());
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
         holder.txtgiasanpham.setText(decimalFormat.format(gioHang.getPrice())+" đ");
-        holder.edtsoluong.setText(""+gioHang.getSoluong());
+        holder.txtsoluong.setText(""+gioHang.getSoluong());
         if(!gioHang.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(gioHang.getLinkHinhAnh())
@@ -61,6 +63,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                     .fit()
                     .into(holder.imghinhsanpham);
         }
+        //Xóa sản phẩm
         holder.layoutDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +71,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
             }
 
             private void xoasanpham() {
-                AlertDialog.Builder alertdialog=new AlertDialog.Builder(context);
+                AlertDialog.Builder alertdialog=new AlertDialog.Builder(context,R.style.AlertDialogStyle);
                 alertdialog.setTitle("Xóa sản phẩm");
                 alertdialog.setMessage("Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng không?");
                 alertdialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
@@ -88,6 +91,37 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                 alertdialog.show();
             }
         });
+        holder.txtsoluong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogSuasoluong();
+            }
+
+            private void dialogSuasoluong() {
+                Dialog dialog=new Dialog(context);
+                dialog.setContentView(R.layout.dialog_soluong);
+
+                EditText edtSoluong=(EditText) dialog.findViewById(R.id.edt_soluongmoi);
+                Button btnDongy=(Button) dialog.findViewById(R.id.btn_dongy);
+                Button btnHuy=(Button) dialog.findViewById(R.id.btn_huy);
+
+                btnDongy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
+                btnHuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -99,8 +133,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
     }
 
     public class GioHangViewHolder extends RecyclerView.ViewHolder{
-        private TextView txttensanpham,txtgiasanpham;
-        private EditText edtsoluong;
+        private TextView txttensanpham,txtgiasanpham,txtsoluong;
         private ImageView imghinhsanpham;
         private SwipeRevealLayout swipeRevealLayout;
         private LinearLayout layoutDelete;
@@ -109,7 +142,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
             super(itemView);
             txttensanpham=itemView.findViewById(R.id.popularName);
             txtgiasanpham=itemView.findViewById(R.id.popularGia);
-            edtsoluong=itemView.findViewById(R.id.popularSoLuong);
+            txtsoluong=itemView.findViewById(R.id.popularSoLuong);
             imghinhsanpham=itemView.findViewById(R.id.ItemProductPic);
             swipeRevealLayout=itemView.findViewById(R.id.swipeRevealLayout);
             layoutDelete=itemView.findViewById(R.id.layoutDelete);
