@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +55,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         holder.txttensanpham.setText(gioHang.getNameFood());
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
         holder.txtgiasanpham.setText(decimalFormat.format(gioHang.getPrice())+" đ");
-        holder.txtsoluong.setText(""+gioHang.getSoluong());
+        holder.txtsoluong.setText(String.valueOf(gioHang.getSoluong()));
         if(!gioHang.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(gioHang.getLinkHinhAnh())
@@ -67,47 +68,40 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         holder.layoutDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               xoasanpham();
-            }
-
-            private void xoasanpham() {
-                AlertDialog.Builder alertdialog=new AlertDialog.Builder(context,R.style.AlertDialogStyle);
-                alertdialog.setTitle("Xóa sản phẩm");
-                alertdialog.setMessage("Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng không?");
-                alertdialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        gioHangList.remove(holder.getAdapterPosition());
-                        notifyItemRemoved(holder.getAdapterPosition());
-                    }
-                });
-
-                alertdialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                alertdialog.show();
+               xoasanpham(holder);
             }
         });
         holder.txtsoluong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogSuasoluong();
+                dialogSuasoluong(gioHang.getIdFood(), gioHang.getSoluong());
             }
 
-            private void dialogSuasoluong() {
+            private void dialogSuasoluong(String idFood,int soluong) {
                 Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_soluong);
 
-                EditText edtSoluong=(EditText) dialog.findViewById(R.id.edt_soluongmoi);
+                EditText edtSoluongmoi=(EditText) dialog.findViewById(R.id.edt_soluongmoi);
                 Button btnDongy=(Button) dialog.findViewById(R.id.btn_dongy);
                 Button btnHuy=(Button) dialog.findViewById(R.id.btn_huy);
+
+                edtSoluongmoi.setText(String.valueOf(soluong));
 
                 btnDongy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (edtSoluongmoi.getText().toString().trim().equals("")){
+                            Toast.makeText(context, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            int soluongmoi=Integer.parseInt(edtSoluongmoi.getText().toString().trim());
+                            if(soluongmoi==0){
+                                xoasanpham(holder);
+                            }
+                            else {
+
+                            }
+                        }
 
                     }
                 });
@@ -124,6 +118,27 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         });
     }
 
+    private void xoasanpham(GioHangViewHolder holder) {
+        AlertDialog.Builder alertdialog=new AlertDialog.Builder(context,R.style.AlertDialogStyle);
+        alertdialog.setTitle("Xóa sản phẩm");
+        alertdialog.setMessage("Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng không?");
+        alertdialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                gioHangList.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+            }
+        });
+
+        alertdialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alertdialog.show();
+    }
+
     @Override
     public int getItemCount() {
         if(gioHangList!=null){
@@ -131,6 +146,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         }
         return 0;
     }
+
+
 
     public class GioHangViewHolder extends RecyclerView.ViewHolder{
         private TextView txttensanpham,txtgiasanpham,txtsoluong;

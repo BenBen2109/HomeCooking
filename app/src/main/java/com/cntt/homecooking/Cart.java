@@ -34,7 +34,6 @@ public class Cart extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     private View mView;
     private RecyclerView rcvGiohang;
-    private RecyclerView.Adapter giohangAdapter;
     private static TextView txtTongtien;
     private Context mContext;
 
@@ -43,11 +42,11 @@ public class Cart extends Fragment {
                              Bundle savedInstanceState) {
         mView= inflater.inflate(R.layout.fragment_cart, container, false);
 
-        giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+        MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
         rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
-        rcvGiohang.setAdapter(giohangAdapter);
+        rcvGiohang.setAdapter(MainActivity.giohangAdapter);
 
 
         initView();
@@ -57,13 +56,13 @@ public class Cart extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+                MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
                 rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 rcvGiohang.setLayoutManager(linearLayoutManager);
-                rcvGiohang.setAdapter(giohangAdapter);
+                rcvGiohang.setAdapter(MainActivity.giohangAdapter);
                 tinhtongtien();
-                giohangAdapter.notifyDataSetChanged();
+                MainActivity.giohangAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
