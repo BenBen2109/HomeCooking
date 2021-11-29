@@ -1,7 +1,6 @@
 package com.cntt.homecooking;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.cntt.homecooking.adapter.GioHangAdapter;
@@ -40,12 +38,10 @@ public class Cart extends Fragment {
     private static TextView txtTongtien;
     private Context mContext;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView= inflater.inflate(R.layout.fragment_cart, container, false);
-
 
         giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
         rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
@@ -71,7 +67,6 @@ public class Cart extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-
 
         return mView;
     }

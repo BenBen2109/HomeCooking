@@ -2,6 +2,7 @@ package com.cntt.homecooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager2 mViewpager2;
     private BottomNavigationView mBottomNavigationView;
     public static List<GioHang> gioHangList;
-
+    public static RecyclerView.Adapter giohangAdapter;
 
 
 
