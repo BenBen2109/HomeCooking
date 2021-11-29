@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.cntt.homecooking.Cart;
+import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
@@ -54,7 +56,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
 
         holder.txttensanpham.setText(gioHang.getNameFood());
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
-        holder.txtgiasanpham.setText(decimalFormat.format(gioHang.getPrice())+" đ");
+        holder.txtgiasanpham.setText((decimalFormat.format(gioHang.getPrice())+" đ"));
         holder.txtsoluong.setText(String.valueOf(gioHang.getSoluong()));
         if(!gioHang.getLinkHinhAnh().isEmpty()){
             Picasso.get()
@@ -97,9 +99,18 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                             int soluongmoi=Integer.parseInt(edtSoluongmoi.getText().toString().trim());
                             if(soluongmoi==0){
                                 xoasanpham(holder);
+                                dialog.dismiss();
                             }
                             else {
-
+                                int soluonghientai=gioHang.getSoluong();
+                                int giahientai=gioHang.getPrice();
+                                int dongia=giahientai/soluonghientai;
+                                int giamoi=dongia*soluongmoi;
+                                gioHang.setSoluong(soluongmoi);
+                                gioHang.setPrice(giamoi);
+                                notifyDataSetChanged();
+                                Cart.tinhtongtien();
+                                dialog.dismiss();
                             }
                         }
 
@@ -127,6 +138,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
             public void onClick(DialogInterface dialogInterface, int i) {
                 gioHangList.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
+                Cart.tinhtongtien();
             }
         });
 

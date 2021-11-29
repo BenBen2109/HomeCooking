@@ -98,7 +98,7 @@
                             android:id="@+id/priceTongSanPham"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$0"
+                            android:text="0 đ"
                             android:textColor="#373b54"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -127,7 +127,7 @@
                             android:id="@+id/priceShip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$0"
+                            android:text="0 đ"
                             android:textColor="#373b54"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -166,7 +166,7 @@
                             android:id="@+id/textPriceTongTien"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$0"
+                            android:text="0 đ"
                             android:textColor="#373b54"
                             android:textSize="30sp"
                             android:textStyle="bold" />

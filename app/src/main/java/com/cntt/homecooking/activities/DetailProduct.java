@@ -74,18 +74,20 @@ public class DetailProduct extends AppCompatActivity {
                 if(MainActivity.gioHangList.get(i).getIdFood().equals(id)){
                     MainActivity.gioHangList.get(i).setSoluong(MainActivity.gioHangList.get(i).getSoluong()+soluong);
                     MainActivity.gioHangList.get(i).setPrice(MainActivity.gioHangList.get(i).getSoluong()*price);
+                    MainActivity.giohangAdapter.notifyDataSetChanged();
                     tontai=true;
                 }
             }
             if (tontai==false){
                 sotien=soluong*price;
                 MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
-                MainActivity.giohangAdapter.notifyItemInserted(MainActivity.gioHangList.size()-1);
+                MainActivity.giohangAdapter.notifyDataSetChanged();
             }
         }
         else {
             sotien=soluong*price;
             MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
+            MainActivity.giohangAdapter.notifyDataSetChanged();
         };
         Toast.makeText(DetailProduct.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
     }
