@@ -10,6 +10,11 @@
     <string name="shared_preference">com.cntt.homecooking_shared_preference</string>
     <string name="login_status_shared_preference">com.cntt.homecooking_login_status_shared_preference</string>
 
+<!--    Facebook-->
+    <string name="facebook_app_id">273332624663743</string>
+    <string name="fb_login_protocol_scheme">fb273332624663743</string>
+
+
     <string-array name="phuongthucthanhtoan">
         <item>Thanh Toán Trực Tiếp</item>
         <item>PayPal</item>

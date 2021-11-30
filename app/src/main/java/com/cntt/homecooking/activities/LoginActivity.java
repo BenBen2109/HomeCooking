@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +23,21 @@ import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
 import com.cntt.homecooking.model.KhachHang;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.Login;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +48,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
 
     private TextInputLayout edtUsername,edtPassword;
     private Button btnLogin;
@@ -58,6 +73,41 @@ public class LoginActivity extends AppCompatActivity {
 
 
         initView();
+
+        // Đăng nhập Facebook
+        callbackManager = CallbackManager.Factory.create();
+
+        binding.btnFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.btn_fb) {
+                    loginButton.performClick();
+                }
+            }
+        });
+
+        loginButton.setPermissions(Arrays.asList("public_profile","email"));
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                facebookresult();
+                Toast.makeText(LoginActivity.this, "Đăng nhập bằng Facebook thành công", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Toast.makeText(LoginActivity.this, "Hủy đăng nhập Facebook", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Toast.makeText(LoginActivity.this, "Có lỗi khi đăng nhập bằng Facebook", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Xử lý EditText Email
         edtUsername.getEditText().addTextChangedListener(new TextWatcher() {
@@ -171,6 +221,23 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void facebookresult() {
+        GraphRequest request = GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        // Insert your code here
+                        Log.d("test", object.toString());
+                    }
+                });
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
     private void clickLogin() {
         String strUsername = edtUsername.getEditText().getText().toString().trim();
         String strPassword = edtPassword.getEditText().getText().toString().trim();
@@ -255,5 +322,12 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword=binding.edtPassword;
         btnLogin=binding.btnLogin;
         txtError=binding.txtError;
+        loginButton =binding.loginButton;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
