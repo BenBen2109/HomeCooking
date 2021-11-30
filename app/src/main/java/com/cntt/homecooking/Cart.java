@@ -38,6 +38,11 @@ public class Cart extends Fragment {
     private static TextView txtTongtien;
     private Context mContext;
 
+    public void onResume() {
+        super.onResume();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

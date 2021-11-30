@@ -84,6 +84,12 @@ public class Home extends Fragment  {
 //        }
 //    }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private View mView;
 
     @Nullable
@@ -174,5 +180,8 @@ public class Home extends Fragment  {
     }
 
 
+    public void reloadData(){
+        Toast.makeText(getActivity(), "reload data", Toast.LENGTH_SHORT).show();
+    }
 
 }

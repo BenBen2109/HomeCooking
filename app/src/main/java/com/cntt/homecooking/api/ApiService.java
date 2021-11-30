@@ -24,6 +24,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -103,6 +105,10 @@ public interface ApiService {
     //Danh sách công thức nấu ăn
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
+
+    @FormUrlEncoded
+    @POST("/api/KhachHangs")
+    Call<KhachHang> khInfo();
 
     @GET("/api/KhachHangs")
     Call<List<KhachHang>> dangNhapKhachHangs();

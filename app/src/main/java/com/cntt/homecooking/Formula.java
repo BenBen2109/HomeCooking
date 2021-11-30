@@ -57,6 +57,9 @@ public class Formula extends Fragment{
 
     private View mView;
 
+    public void onResume() {
+        super.onResume();
+    }
 
     @Nullable
     @Override

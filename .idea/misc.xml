@@ -7,11 +7,15 @@
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_formula.xml" value="0.13134057971014493" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_detail_product.xml" value="0.12708333333333333" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_link_youtube.xml" value="0.21105072463768115" />
-        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_login.xml" value="0.13134057971014493" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_login.xml" value="0.536" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_register.xml" value="0.2164855072463768" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_thanh_toan.xml" value="0.23731884057971014" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/activity_user_info.xml" value="0.25" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_cart.xml" value="0.264" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_formula.xml" value="0.2056159420289855" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/HomeCooking/app/src/main/res/layout/fragment_me.xml" value="0.264" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/item_cart.xml" value="0.25" />
         <entry key="..\:/HomeCooking/app/src/main/res/layout/liked_item.xml" value="0.25" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/background_cart.xml" value="0.37864583333333335" />

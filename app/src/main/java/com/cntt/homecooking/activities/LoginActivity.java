@@ -1,6 +1,7 @@
 package com.cntt.homecooking.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,23 +9,25 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cntt.homecooking.Me;
+import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.api.ApiService;
 
+import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
 import com.cntt.homecooking.model.KhachHang;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,11 +43,18 @@ public class LoginActivity extends AppCompatActivity {
 
     private List<KhachHang> mListKhachHangs;
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+//        if(!DataLocalManager.getPrefFirstInstall()){
+//            Toast.makeText(this, "Lan dau tai app", Toast.LENGTH_SHORT).show();
+//            DataLocalManager.setPrefFirstInstall(true);
+//        }
 
 
         initView();
@@ -139,6 +149,8 @@ public class LoginActivity extends AppCompatActivity {
         // Xử lý nút đăng nhập bằng tài khoản
         mListKhachHangs = new ArrayList<>();
         getListUser();
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +175,6 @@ public class LoginActivity extends AppCompatActivity {
         String strUsername = edtUsername.getEditText().getText().toString().trim();
         String strPassword = edtPassword.getEditText().getText().toString().trim();
 
-
         if(mListKhachHangs == null || mListKhachHangs.isEmpty()){
             return;
         }
@@ -178,17 +189,37 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(isHasUser){
+
             //ManActivity
-//            Intent in = new Intent(LoginActivity.this, Me.class);
+            String userName = mKhachHang.getName();
+            DataLocalManager.setUserName(userName);
+
+            String userEmail = mKhachHang.getEmail();
+            DataLocalManager.setUserEmail(userEmail);
+
+            String userPhone = mKhachHang.getSdt();
+            DataLocalManager.setUserPhone(userPhone);
+
+            Intent in = new Intent(LoginActivity.this, MainActivity.class);
+
+//            Me me = new Me();
+//            FragmentTransaction faFragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//            Bundle data = new Bundle();
+//            data.putString("data",strUsername);
+//
+//            me.setArguments(data);
+
 //            Bundle bundle = new Bundle();
 //            bundle.putSerializable("object_user", mKhachHang);
 //            in.putExtras(bundle);
-//            startActivity(in);
+            startActivity(in);
             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void getListUser() {
         ApiService.apiService.dangNhapKhachHangs()

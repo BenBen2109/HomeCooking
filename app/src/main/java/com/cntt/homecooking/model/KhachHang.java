@@ -6,6 +6,7 @@ public class KhachHang implements Serializable {
     private String idKh;
     private String name;
     private String email;
+    private String sdt;
     private String diaChi;
     private String password;
     private String dateCreated;
@@ -35,6 +36,14 @@ public class KhachHang implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
     public String getDiaChi() {
