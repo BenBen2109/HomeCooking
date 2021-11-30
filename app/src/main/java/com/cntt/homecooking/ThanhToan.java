@@ -31,18 +31,18 @@ public class ThanhToan extends AppCompatActivity {
 
     private int PAYPAL_REQ_CODE = 12;
     private PayPalConfiguration payPalConfiguration = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX).clientId(PayPalClientIDConfig.PAYPAL_CLIENT_ID);
-    private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == RESULT_OK && result != null) {
-                        Intent intent = result.getData();
-
-                    } else {
-
-                    }
-                }
-            });
+//    private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if (result.getResultCode() == RESULT_OK && result != null) {
+//                        Intent intent = result.getData();
+//
+//                    } else {
+//
+//                    }
+//                }
+//            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class ThanhToan extends AppCompatActivity {
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, payPalConfiguration);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
         startActivityForResult(intent, PAYPAL_REQ_CODE);
-        activityResultLauncher.launch(intent);
+//        activityResultLauncher.launch(intent);
     }
 
     @Override
