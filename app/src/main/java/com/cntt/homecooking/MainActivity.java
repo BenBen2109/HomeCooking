@@ -2,17 +2,21 @@ package com.cntt.homecooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.cntt.homecooking.adapter.GioHangAdapter;
 import com.cntt.homecooking.adapter.MyViewPagerAdapter;
 import com.cntt.homecooking.model.Formula;
 import com.cntt.homecooking.model.GioHang;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager2 mViewpager2;
     private BottomNavigationView mBottomNavigationView;
     public static List<GioHang> gioHangList;
-
-
-
+    public static RecyclerView.Adapter giohangAdapter;
 
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             gioHangList=new ArrayList<>();
         };
 
+        giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,this);
 
 
 

@@ -34,8 +34,7 @@ public class Cart extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     private View mView;
     private RecyclerView rcvGiohang;
-    private RecyclerView.Adapter giohangAdapter;
-    private static TextView txtTongtien;
+    private static TextView txtTongtien,txtTongsanpham;
     private Context mContext;
 
     public void onResume() {
@@ -48,11 +47,11 @@ public class Cart extends Fragment {
                              Bundle savedInstanceState) {
         mView= inflater.inflate(R.layout.fragment_cart, container, false);
 
-        giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+//        MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
         rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
-        rcvGiohang.setAdapter(giohangAdapter);
+        rcvGiohang.setAdapter(MainActivity.giohangAdapter);
 
 
         initView();
@@ -62,13 +61,13 @@ public class Cart extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+                MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
                 rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 rcvGiohang.setLayoutManager(linearLayoutManager);
-                rcvGiohang.setAdapter(giohangAdapter);
+                rcvGiohang.setAdapter(MainActivity.giohangAdapter);
                 tinhtongtien();
-                giohangAdapter.notifyDataSetChanged();
+                MainActivity.giohangAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -78,15 +77,20 @@ public class Cart extends Fragment {
 
     private void initView() {
         txtTongtien=mView.findViewById(R.id.textPriceTongTien);
+        txtTongsanpham=mView.findViewById(R.id.priceTongSanPham);
     }
 
     public static void tinhtongtien() {
         int tongtien=0;
-        for (int i=0;i<MainActivity.gioHangList.size();i++){
-            tongtien+=MainActivity.gioHangList.get(i).getPrice();
+        if(!MainActivity.gioHangList.isEmpty()){
+            for (int i=0;i<MainActivity.gioHangList.size();i++){
+                tongtien+=MainActivity.gioHangList.get(i).getPrice();
+            }
+            DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+
+            txtTongsanpham.setText(decimalFormat.format(tongtien)+" đ");
+            txtTongtien.setText(decimalFormat.format(tongtien)+" đ");
         }
-        DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
-        txtTongtien.setText(decimalFormat.format(tongtien)+" đ");
     }
 
     @Override

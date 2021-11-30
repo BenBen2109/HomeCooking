@@ -150,7 +150,7 @@
             android:layout_marginTop="591dp"
             android:background="@drawable/rectangle_btn_login"
             android:backgroundTint="@null"
-            android:fontFamily="@font/raleway_bold"
+            android:textStyle="bold"
             android:text="Đăng ký tài khoản"
             android:textAllCaps="false"
             android:textColor="#ffffff"
