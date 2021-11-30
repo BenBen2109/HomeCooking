@@ -23,6 +23,8 @@ import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
 import com.cntt.homecooking.model.KhachHang;
+import com.cntt.homecooking.model.RegisterRequest;
+import com.cntt.homecooking.model.RegisterResponse;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -30,10 +32,12 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.Login;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -55,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView txtError;
     private KhachHang mKhachHang;
+
+    private String strUsername,strPassword,strName;
 
     private List<KhachHang> mListKhachHangs;
 
@@ -229,6 +235,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         // Insert your code here
                         Log.d("test", object.toString());
+                        try {
+                            strUsername=object.getString("email");
+                            strPassword=object.getString("id");
+                            strName=object.getString("name");
+                            loginFacebook(strUsername,strPassword);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -238,9 +252,85 @@ public class LoginActivity extends AppCompatActivity {
         request.executeAsync();
     }
 
+    private void loginFacebook(String strUsername, String strPassword) {
+        if(mListKhachHangs == null || mListKhachHangs.isEmpty()){
+            return;
+        }
+
+        boolean isHasUser = false;
+        for(KhachHang khachHang : mListKhachHangs){
+            if(strUsername.equals(khachHang.getEmail()) && strPassword.equals(khachHang.getPassword())){
+                isHasUser = true;
+                mKhachHang = khachHang;
+                break;
+            }
+        }
+
+        if(isHasUser){
+
+            //ManActivity
+            String userName = mKhachHang.getName();
+            DataLocalManager.setUserName(userName);
+
+            String userEmail = mKhachHang.getEmail();
+            DataLocalManager.setUserEmail(userEmail);
+
+            String userPhone = mKhachHang.getSdt();
+            DataLocalManager.setUserPhone(userPhone);
+
+            Intent in = new Intent(LoginActivity.this, MainActivity.class);
+
+//            Me me = new Me();
+//            FragmentTransaction faFragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//            Bundle data = new Bundle();
+//            data.putString("data",strUsername);
+//
+//            me.setArguments(data);
+
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("object_user", mKhachHang);
+//            in.putExtras(bundle);
+            startActivity(in);
+            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+        }else{
+            RegisterRequest registerRequest=new RegisterRequest();
+            registerRequest.setEmail(strUsername);
+            registerRequest.setName(strName);
+            registerRequest.setPassword(strPassword);
+            Register(registerRequest);
+        }
+    }
+
+
+    private void Register(RegisterRequest registerRequest) {
+        ApiService.apiService.register(registerRequest)
+                .enqueue(new Callback<RegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                        if (response.isSuccessful()){
+                            String message = "Đăng ký tài khoản mới thành công";
+                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            finish();
+                        }else {
+                            String message = "Có lỗi xảy ra";
+                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                        String message = t.getLocalizedMessage();
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     private void clickLogin() {
-        String strUsername = edtUsername.getEditText().getText().toString().trim();
-        String strPassword = edtPassword.getEditText().getText().toString().trim();
+        strUsername = edtUsername.getEditText().getText().toString().trim();
+        strPassword = edtPassword.getEditText().getText().toString().trim();
 
         if(mListKhachHangs == null || mListKhachHangs.isEmpty()){
             return;
@@ -329,5 +419,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onStart() {
+        LoginManager.getInstance().logOut();
+        super.onStart();
     }
 }
