@@ -1,11 +1,26 @@
 package com.cntt.homecooking.model;
 
-public class KhoBepOnline {
-    private String idKhobep;
-    private String idKh;
-    private String idKhNavigation;
-    private String chiTietKhoBeps;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+public class KhoBepOnline {
+    @SerializedName("idKhobep")
+    @Expose
+    private String idKhobep;
+    @SerializedName("idKh")
+    @Expose
+    private String idKh;
+    @SerializedName("chiTietKhoBeps")
+    @Expose
+    private ChiTietKhoBep chiTietKhoBeps;
+
+    public KhoBepOnline(String idKhobep, String idKh, ChiTietKhoBep chiTietKhoBeps) {
+        this.idKhobep = idKhobep;
+        this.idKh = idKh;
+        this.chiTietKhoBeps = chiTietKhoBeps;
+    }
 
     public String getIdKhobep() {
         return idKhobep;
@@ -23,19 +38,11 @@ public class KhoBepOnline {
         this.idKh = idKh;
     }
 
-    public String getIdKhNavigation() {
-        return idKhNavigation;
-    }
-
-    public void setIdKhNavigation(String idKhNavigation) {
-        this.idKhNavigation = idKhNavigation;
-    }
-
-    public String getChiTietKhoBeps() {
+    public ChiTietKhoBep getChiTietKhoBeps() {
         return chiTietKhoBeps;
     }
 
-    public void setChiTietKhoBeps(String chiTietKhoBeps) {
+    public void setChiTietKhoBeps(ChiTietKhoBep chiTietKhoBeps) {
         this.chiTietKhoBeps = chiTietKhoBeps;
     }
 }
