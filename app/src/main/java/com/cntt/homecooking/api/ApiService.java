@@ -106,16 +106,14 @@ public interface ApiService {
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
-    @FormUrlEncoded
-    @POST("/api/KhachHangs")
-    Call<KhachHang> khInfo();
-
+    //Dang nhap
     @GET("/api/KhachHangs")
     Call<List<KhachHang>> dangNhapKhachHangs();
 
+    //Dang ky
     @POST("/api/KhachHangs")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
-
+//    @GET("/api/")
 
 }

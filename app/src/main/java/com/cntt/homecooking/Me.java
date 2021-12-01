@@ -2,6 +2,7 @@ package com.cntt.homecooking;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.cntt.homecooking.model.KhachHang;
 
 
 public class Me extends Fragment  {
+    private static final String MY_SHARED_PREFERENCES = "MY_SHARED_PREFERENCES";
     private FragmentMeBinding binding;
 
     private LoginActivity loginActivity;
@@ -45,6 +47,8 @@ public class Me extends Fragment  {
         logOut=binding.logOut;
 
 
+
+
         user_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,12 +57,12 @@ public class Me extends Fragment  {
             }
         });
 
-//        logOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logoutUser();
-//            }
-//        });
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
 
 //        user_name.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -77,17 +81,20 @@ public class Me extends Fragment  {
 //            }
 //        }
 
+
+
         return binding.getRoot();
     }
 
     private void logoutUser() {
-        MySharedPreferences sharedPreferences = new MySharedPreferences(mContext.getApplicationContext());
-        sharedPreferences.logout();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_SHARED_PREFERENCES,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
         Intent intent = new Intent(getActivity(),LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
-        Toast.makeText(mContext, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Đã đăng xuất", Toast.LENGTH_SHORT).show();
     }
 }
 

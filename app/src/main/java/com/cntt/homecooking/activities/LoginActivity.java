@@ -370,6 +370,8 @@ public class LoginActivity extends AppCompatActivity {
 //            Bundle bundle = new Bundle();
 //            bundle.putSerializable("object_user", mKhachHang);
 //            in.putExtras(bundle);
+
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         }else{
