@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/grad"
     android:layout_height="match_parent"
     tools:context=".Me">
 
@@ -12,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background_menupro"
         android:elevation="5dp"
+        android:layout_margin="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="Thông tin cá nhân"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -57,7 +59,7 @@
                     app:layout_constraintStart_toEndOf="@+id/image1"
                     app:layout_constraintTop_toTopOf="@+id/image1" />
 
-<!--                <TextView-->
+                <!--                <TextView-->
 <!--                    android:id="@+id/text2"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
