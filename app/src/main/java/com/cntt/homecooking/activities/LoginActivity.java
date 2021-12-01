@@ -23,6 +23,7 @@ import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
 import com.cntt.homecooking.model.KhachHang;
+import com.cntt.homecooking.model.KhoBepOnline;
 import com.cntt.homecooking.model.RegisterRequest;
 import com.cntt.homecooking.model.RegisterResponse;
 import com.facebook.AccessToken;
@@ -31,7 +32,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -43,12 +43,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.POST;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -59,10 +58,12 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView txtError;
     private KhachHang mKhachHang;
+    private KhoBepOnline mkhoBepOnline;
 
     private String strUsername,strPassword,strName;
 
-    private List<KhachHang> mListKhachHangs;
+    private List<KhachHang> mListKhachHangs=new ArrayList<>();
+    private List<KhoBepOnline> khoBepOnlineList=new ArrayList<>();
 
     private SharedPreferences sharedPreferences;
 
@@ -76,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 //            Toast.makeText(this, "Lan dau tai app", Toast.LENGTH_SHORT).show();
 //            DataLocalManager.setPrefFirstInstall(true);
 //        }
-
 
         initView();
 
@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 facebookresult();
-                Toast.makeText(LoginActivity.this, "Đăng nhập bằng Facebook thành công", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -202,9 +201,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        // Xử lý nút đăng nhập bằng tài khoản
-        mListKhachHangs = new ArrayList<>();
         getListUser();
+        getListKhoBepOnline();
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -278,6 +276,12 @@ public class LoginActivity extends AppCompatActivity {
             String userPhone = mKhachHang.getSdt();
             DataLocalManager.setUserPhone(userPhone);
 
+            String userID=mKhachHang.getIdKh();
+
+            checkKhobep(userID);
+
+
+
             Intent in = new Intent(LoginActivity.this, MainActivity.class);
 
 //            Me me = new Me();
@@ -292,7 +296,6 @@ public class LoginActivity extends AppCompatActivity {
 //            bundle.putSerializable("object_user", mKhachHang);
 //            in.putExtras(bundle);
             startActivity(in);
-            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         }else{
             RegisterRequest registerRequest=new RegisterRequest();
             registerRequest.setEmail(strUsername);
@@ -346,7 +349,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(isHasUser){
-
             //ManActivity
             String userName = mKhachHang.getName();
             DataLocalManager.setUserName(userName);
@@ -357,7 +359,15 @@ public class LoginActivity extends AppCompatActivity {
             String userPhone = mKhachHang.getSdt();
             DataLocalManager.setUserPhone(userPhone);
 
+            String userID=mKhachHang.getIdKh();
+
+
+            checkKhobep(userID);
+
+
             Intent in = new Intent(LoginActivity.this, MainActivity.class);
+
+
 
 //            Me me = new Me();
 //            FragmentTransaction faFragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -370,31 +380,75 @@ public class LoginActivity extends AppCompatActivity {
 //            Bundle bundle = new Bundle();
 //            bundle.putSerializable("object_user", mKhachHang);
 //            in.putExtras(bundle);
-
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
-            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
     }
+    //Kiểm tra tài khoản có kho bếp hay chưa
+    private void checkKhobep(String userID){
+        boolean khobep = false;
+        for(KhoBepOnline khoBepOnline : khoBepOnlineList){
+            if(userID.equals(khoBepOnline.getIdKh())){
+                khobep = true;
+                mkhoBepOnline = khoBepOnline;
+                break;
+            }
+        }
 
+        if (khobep){
+            // Lấy thông tin nếu kho bếp tồn tại
+            Toast.makeText(LoginActivity.this, "Thấy kho bếp", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            // POST kho bếp bằng cách truyền userID vào
+            sendPostKhoBepOnline(userID);
+        }
+    }
 
     private void getListUser() {
         ApiService.apiService.dangNhapKhachHangs()
                 .enqueue(new Callback<List<KhachHang>>() {
                     @Override
                     public void onResponse(Call<List<KhachHang>> call, Response<List<KhachHang>> response) {
-                        mListKhachHangs = response.body();
+                        mListKhachHangs.addAll(response.body());
                     }
 
                     @Override
                     public void onFailure(Call<List<KhachHang>> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "Có lỗi xảy ra", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "List user", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    private void getListKhoBepOnline() {
+        ApiService.apiService.getListKhoBep().enqueue(new Callback<List<KhoBepOnline>>() {
+            @Override
+            public void onResponse(Call<List<KhoBepOnline>> call, Response<List<KhoBepOnline>> response) {
+                khoBepOnlineList.addAll(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<KhoBepOnline>> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "List kho bếp", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void sendPostKhoBepOnline(String idKH){
+        mkhoBepOnline=new KhoBepOnline(null,idKH,null);
+        ApiService.apiService.postKhoBep(mkhoBepOnline).enqueue(new Callback<KhoBepOnline>() {
+            @Override
+            public void onResponse(Call<KhoBepOnline> call, Response<KhoBepOnline> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<KhoBepOnline> call, Throwable t) {
+
+            }
+        });
+    }
     // Nút đăng nhập sẽ sáng lên nếu đủ điều kiện
     private void enableLoginButton() {
         if(edtPassword.getEditText().getText().length()<6 || !Patterns.EMAIL_ADDRESS.matcher(edtUsername.getEditText().getText().toString().trim()).matches()){
@@ -408,7 +462,7 @@ public class LoginActivity extends AppCompatActivity {
             btnLogin.setTextColor(Color.parseColor("#FFFFFF"));
         }
     }
-//    Ánh xạ
+    //    Ánh xạ
     private void initView() {
         edtUsername=binding.edtUsername;
         edtPassword=binding.edtPassword;

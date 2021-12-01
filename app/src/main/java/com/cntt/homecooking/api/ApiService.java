@@ -35,9 +35,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //Cấu hình
-//    String url="https://192.168.0.107:45456/";
-
-    String url="http://www.homecooking.somee.com"; // Của Duy
+    String url="http://www.homecooking.somee.com";
 
     Gson gson=new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -61,11 +59,13 @@ public interface ApiService {
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
-    //Dang nhap
+    @FormUrlEncoded
+    @POST("/api/KhachHangs")
+    Call<KhachHang> khInfo();
+
     @GET("/api/KhachHangs")
     Call<List<KhachHang>> dangNhapKhachHangs();
 
-    //Dang ky
     @POST("/api/KhachHangs")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
@@ -74,5 +74,4 @@ public interface ApiService {
 
     @POST("api/KhoBepOnlines")
     Call<KhoBepOnline> postKhoBep(@Body KhoBepOnline khoBepOnline);
-
 }
