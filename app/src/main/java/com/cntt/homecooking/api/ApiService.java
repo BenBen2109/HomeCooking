@@ -2,6 +2,7 @@ package com.cntt.homecooking.api;
 
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.KhachHang;
+import com.cntt.homecooking.model.KhoBepOnline;
 import com.cntt.homecooking.model.RegisterRequest;
 import com.cntt.homecooking.model.RegisterResponse;
 import com.cntt.homecooking.model.ThucPham;
@@ -49,60 +50,14 @@ public interface ApiService {
             .create(ApiService.class);
 
 
-    // Fix "Trust anchor for certificate path not found"
-    public static OkHttpClient.Builder getUnsafeOkHttpClient() {
-        try {
-            // Create a trust manager that does not validate certificate chains
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-
-            // Install the all-trusting trust manager
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-
-            // Create an ssl socket factory with our all-trusting manager
-            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-            return builder;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
     //Lấy dữ liệu(GET)
 
-    //Danh sách sản phẩm
     @GET("/api/ThucPhams")
     Call<List<ThucPham>> getListThucPhams();
 
     @GET("/api/ThucPhams/{id}")
     Call<ThucPham> getThucPhams(@Path("id") String id);
 
-    //Danh sách công thức nấu ăn
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
@@ -114,6 +69,10 @@ public interface ApiService {
     @POST("/api/KhachHangs")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
-//    @GET("/api/")
+    @GET("api/KhoBepOnlines")
+    Call<List<KhoBepOnline>> getListKhoBep();
+
+    @POST("api/KhoBepOnlines")
+    Call<KhoBepOnline> postKhoBep(@Body KhoBepOnline khoBepOnline);
 
 }
