@@ -1,8 +1,10 @@
 package com.cntt.homecooking.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +41,14 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
@@ -65,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
     private List<KhachHang> mListKhachHangs=new ArrayList<>();
     private List<KhoBepOnline> khoBepOnlineList=new ArrayList<>();
 
+
+    GoogleSignInClient mGoogleSignInClient;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -79,6 +95,22 @@ public class LoginActivity extends AppCompatActivity {
 //        }
 
         initView();
+
+        //Đăng nhập google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        MaterialButton signInButton = findViewById(R.id.sign_in_button);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult.launch(signInIntent);
+            }
+        });
 
         // Đăng nhập Facebook
         callbackManager = CallbackManager.Factory.create();
@@ -481,5 +513,46 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         LoginManager.getInstance().logOut();
         super.onStart();
+    }
+
+    //Đăng nhập google
+    ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                        handleSignInResult(task);
+                    }
+                }
+            }
+    );
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
+
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                Uri personPhoto = acct.getPhotoUrl();
+
+                DataLocalManager.setUserName(personName);
+
+                DataLocalManager.setUserEmail(personEmail);
+
+
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+
+                Toast.makeText(this, "Name: "+personName, Toast.LENGTH_SHORT).show();
+            }
+        } catch (ApiException e) {
+            Log.d("GOOGLE ERROR",e.getMessage());
+        }
     }
 }

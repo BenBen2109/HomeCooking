@@ -1,5 +1,6 @@
 package com.cntt.homecooking.api;
 
+import com.cntt.homecooking.model.ChiTietCongThucNauAn;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.KhachHang;
 import com.cntt.homecooking.model.KhoBepOnline;
@@ -78,4 +79,7 @@ public interface ApiService {
 
     @POST("api/KhoBepOnlines")
     Call<KhoBepOnline> postKhoBep(@Body KhoBepOnline khoBepOnline);
+
+    @GET("/api/ChiTietCongThucNauAns")
+    Call<List<ChiTietCongThucNauAn>> getTP();
 }

@@ -71,10 +71,11 @@
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Nấu"
                 android:textSize="26sp"
-                android:background="@drawable/btn_background"
+                android:background="@drawable/orange_btn_background"
                 android:textColor="@color/white"
                 android:textStyle="bold">
             </Button>
@@ -198,7 +199,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Video hướng dẫn"
                 android:textSize="26sp"
-                android:background="@drawable/btn_background"
+                android:background="@drawable/orange_btn_background"
                 android:textColor="@color/white"
                 android:textStyle="bold">
             </Button>
