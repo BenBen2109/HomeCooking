@@ -59,18 +59,22 @@ public interface ApiService {
     @GET("/api/CongThucNauAns")
     Call<List<CongThucNauAn>> getListCongThucNauAn();
 
+    @GET("/api/KhachHangs")
+    Call<List<KhachHang>> dangNhapKhachHangs();
+
+    @GET("api/KhoBepOnlines")
+    Call<List<KhoBepOnline>> getListKhoBep();
+
+    //----------------------------------------------------------------------//
+
+    //Thêm dữ liệu(POST)
+
     @FormUrlEncoded
     @POST("/api/KhachHangs")
     Call<KhachHang> khInfo();
 
-    @GET("/api/KhachHangs")
-    Call<List<KhachHang>> dangNhapKhachHangs();
-
     @POST("/api/KhachHangs")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
-
-    @GET("api/KhoBepOnlines")
-    Call<List<KhoBepOnline>> getListKhoBep();
 
     @POST("api/KhoBepOnlines")
     Call<KhoBepOnline> postKhoBep(@Body KhoBepOnline khoBepOnline);

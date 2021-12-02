@@ -5,35 +5,22 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.TextView;
+
 
 import com.cntt.homecooking.adapter.CongThucNauAnAdapter;
-import com.cntt.homecooking.adapter.FormulaAdapter;
-import com.cntt.homecooking.adapter.HomeCongThucNauAnAdapter;
-import com.cntt.homecooking.adapter.PopularAdapter;
+
 import com.cntt.homecooking.api.ApiService;
-import com.cntt.homecooking.db.DBManager;
-import com.cntt.homecooking.db.DBManagerDAO;
-import com.cntt.homecooking.model.Category;
+
 import com.cntt.homecooking.model.CongThucNauAn;
-import com.cntt.homecooking.model.Popular;
-import android.app.SearchManager;
-import android.widget.SearchView.OnQueryTextListener;
+
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -45,17 +32,19 @@ import retrofit2.Response;
 
 
 public class Formula extends Fragment{
-    private androidx.appcompat.widget.SearchView formula_search;
+    private SearchView searchView;
     private List<CongThucNauAn> congthucnauanList=new ArrayList<>();
     private RecyclerView rcvCongthucnauan;
-    private RecyclerView.Adapter congthucnauanAdapter;
+    private CongThucNauAnAdapter congthucnauanAdapter;
+
     private Context mContext;
+    private View mView;
 
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
     }
 
-    private View mView;
+
 
     public void onResume() {
         super.onResume();
@@ -66,22 +55,6 @@ public class Formula extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_formula, container, false);
 
-        formula_search= mView.findViewById(R.id.formula_search);
-
-        formula_search.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-//                congthucnauanAdapter.getFilter().filter(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-//                congthucnauanAdapter.getFilter().filter(newText);
-                return true;
-            }
-        });
-
 
         congthucnauanAdapter = new CongThucNauAnAdapter(congthucnauanList, mContext);
         rcvCongthucnauan = (RecyclerView) mView.findViewById(R.id.rcl_formula);
@@ -89,10 +62,38 @@ public class Formula extends Fragment{
         rcvCongthucnauan.setLayoutManager(linearLayoutManager1);
         rcvCongthucnauan.setAdapter(congthucnauanAdapter);
 
+        initView();
         getListCongThucNauAn();
 
 
+        //Tìm kiếm
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                congthucnauanAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                congthucnauanAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         return mView;
+    }
+
+    private void initView() {
+        searchView= mView.findViewById(R.id.formula_search);
     }
 
     private void getListCongThucNauAn() {

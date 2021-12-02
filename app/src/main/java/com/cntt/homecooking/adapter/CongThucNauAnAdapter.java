@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,16 +18,22 @@ import com.cntt.homecooking.activities.DetailActivity;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdapter.CongThucNauAnViewHolder>{
+public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdapter.CongThucNauAnViewHolder> implements Filterable {
+
+    private List<CongThucNauAn> congThucNauAnList;
+    private List<CongThucNauAn> congThucNauAnListold;
+    private Context context;
+
     public CongThucNauAnAdapter(List<CongThucNauAn> congThucNauAnList, Context context) {
         this.congThucNauAnList = congThucNauAnList;
+        this.congThucNauAnListold = congThucNauAnList;
         this.context = context;
     }
 
-    private List<CongThucNauAn> congThucNauAnList;
-    private Context context;
     @NonNull
     @Override
     public CongThucNauAnViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,6 +64,37 @@ public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdap
             return congThucNauAnList.size();
         }
         return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch=charSequence.toString();
+                if(strSearch.isEmpty()){
+                    congThucNauAnList=congThucNauAnListold;
+                }
+                else {
+                    List<CongThucNauAn> list=new ArrayList<>();
+                    for(CongThucNauAn congThucNauAn: congThucNauAnListold){
+                        if(congThucNauAn.getTenCongThuc().contains(strSearch.toLowerCase())){
+                            list.add(congThucNauAn);
+                        }
+                    }
+                    congThucNauAnList=list;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=congThucNauAnList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                congThucNauAnList=(List<CongThucNauAn>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class CongThucNauAnViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

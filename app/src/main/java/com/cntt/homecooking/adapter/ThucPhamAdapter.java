@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,17 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.activities.DetailProduct;
+import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPhamViewHolder>{
+public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPhamViewHolder> implements Filterable {
     private List<ThucPham> thucPhamList;
+    private List<ThucPham> thucPhamListold;
     private Context context;
 
     public ThucPhamAdapter(List<ThucPham> thucPhamList, Context context) {
         this.thucPhamList = thucPhamList;
+        thucPhamListold=thucPhamList;
         this.context = context;
     }
 
@@ -57,6 +63,37 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
             return thucPhamList.size();
         }
         return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch=charSequence.toString();
+                if(strSearch.isEmpty()){
+                    thucPhamList=thucPhamListold;
+                }
+                else {
+                    List<ThucPham> list=new ArrayList<>();
+                    for(ThucPham thucPham: thucPhamListold){
+                        if(thucPham.getNameFood().contains(strSearch.toLowerCase())){
+                            list.add(thucPham);
+                        }
+                    }
+                    thucPhamList=list;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=thucPhamList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                thucPhamList= (List<ThucPham>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ThucPhamViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

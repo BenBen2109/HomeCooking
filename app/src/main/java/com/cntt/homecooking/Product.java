@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,13 +34,12 @@ import retrofit2.Response;
 
 public class Product extends Fragment {
 
-
-    private View mView;
+    private SearchView searchView;
     private List<ThucPham> thucPhamList=new ArrayList<>();
     private RecyclerView rcvThucpham;
-    private RecyclerView.Adapter thucphamAdapter;
+    private ThucPhamAdapter thucphamAdapter;
     private Context mContext;
-
+    private View mView;
 
     public void onResume() {
         super.onResume();
@@ -50,16 +50,42 @@ public class Product extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_product, container, false);
 
-
         thucphamAdapter = new ThucPhamAdapter(thucPhamList, mContext);
         rcvThucpham = (RecyclerView) mView.findViewById(R.id.rcl_product);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvThucpham.setLayoutManager(linearLayoutManager);
         rcvThucpham.setAdapter(thucphamAdapter);
 
+        initView();
         getListThucPham();
 
+        //Tìm kiếm
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                thucphamAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                thucphamAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         return mView;
+    }
+
+    private void initView() {
+        searchView=mView.findViewById(R.id.product_search);
     }
 
     private void getListThucPham() {
