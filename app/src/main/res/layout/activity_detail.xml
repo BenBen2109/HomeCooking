@@ -21,8 +21,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
                 <ImageView
                     android:id="@+id/detailCTPic"
                     android:layout_width="match_parent"
@@ -33,7 +31,6 @@
                     app:layout_constraintTop_toTopOf="parent"/>
                 <!--                    app:srcCompat="@drawable/burger_large" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,32 +79,6 @@
                 android:textStyle="bold">
             </Button>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.333"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_marginLeft="30dp"
-                            android:id="@+id/imgeView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/chronometer" />
-
-                        <TextView
-                            android:id="@+id/textiew17"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:paddingStart="8dp"
-                            android:text="20 mins"
-                            android:textColor="#373b54"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
 
                     <LinearLayout
                         android:id="@+id/btnliked"
@@ -138,26 +109,66 @@
 
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/background_recipe">
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/background_recipe"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_formula_thanhPhan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Thành Phần"
+                    android:textAlignment="center"
+                    android:textColor="#373b54"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#707070" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/formula_ThanhPhan_rcl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/background_recipe"
+                android:orientation="vertical">
+
+
                 <TextView
                     android:id="@+id/txt_formula_ingredient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
                     android:text="Mô tả"
-                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="#373b54"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -173,10 +184,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
-                    android:textSize="16dp"
+                    android:layout_marginBottom="12dp"
                     android:textColor="#373b54"
-                    android:layout_marginBottom="12dp"/>
+                    android:textSize="16dp" />
             </LinearLayout>
+
+
             <Button
                 android:id="@+id/linkVideo"
                 android:layout_width="380dp"
@@ -190,8 +203,6 @@
                 android:textStyle="bold">
             </Button>
 
-
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
