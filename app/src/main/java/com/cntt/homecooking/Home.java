@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.cntt.homecooking.adapter.HomeCongThucNauAnAdapter;
 import com.cntt.homecooking.adapter.HomeThucPhamAdapter;
 import com.cntt.homecooking.api.ApiService;
+import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.db.DBManager;
 import com.cntt.homecooking.db.DBManagerDAO;
 import com.cntt.homecooking.model.CongThucNauAn;
@@ -42,7 +43,7 @@ public class Home extends Fragment  {
     private Context mContext;
     public DBManagerDAO dbManagerDAO;
     public DBManager dbManager;
-    public TextView textAllF;
+    public TextView textAllF,txtxinchao;
 
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,12 +96,12 @@ public class Home extends Fragment  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
-
         mView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        txtxinchao =mView.findViewById(R.id.txtxinchao);
+
+        String userName = DataLocalManager.getUserName();
+        txtxinchao.setText("Xin chào, "+ userName.toString());
 
 
         // List Thực Phẩm

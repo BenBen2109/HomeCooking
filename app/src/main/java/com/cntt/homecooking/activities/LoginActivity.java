@@ -430,7 +430,13 @@ public class LoginActivity extends AppCompatActivity {
 
         if (khobep){
             // Lấy thông tin nếu kho bếp tồn tại
-            Toast.makeText(LoginActivity.this, "Thấy kho bếp", Toast.LENGTH_SHORT).show();
+            String idKhoBep = mkhoBepOnline.getIdKhobep();
+            DataLocalManager.setIdKhoBep(idKhoBep);
+
+            //Lay id kho bep
+//            String id = DataLocalManager.getIdKhoBep();
+//
+//            Toast.makeText(LoginActivity.this, "Thấy kho bếp"+id, Toast.LENGTH_SHORT).show();
         }
         else{
             // POST kho bếp bằng cách truyền userID vào
