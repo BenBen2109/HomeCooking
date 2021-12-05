@@ -32,7 +32,7 @@
                 android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/chamber_icon" />
+                android:src="@drawable/avt_icon" />
 
         </RelativeLayout>
 
@@ -84,7 +84,7 @@
                     android:fontFamily="sans-serif-light"
                     android:text="Rudi.hollywood@gmail.com"
                     android:textColor="#000000"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                     android:fontFamily="sans-serif-light"
                     android:text="+840000000000"
                     android:textColor="#000000"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
