@@ -86,6 +86,7 @@ public class HomeCongThucNauAnAdapter extends RecyclerView.Adapter<HomeCongThucN
             int position = getAdapterPosition();
             Intent intent = new Intent(context, DetailActivity.class);
 
+            intent.putExtra("idCongThuc",congThucNauAnList.get(position).getIdCongThuc());
             intent.putExtra("tenCongThuc",congThucNauAnList.get(position).getTenCongThuc());
             intent.putExtra("moTaMonAn",congThucNauAnList.get(position).getMoTaMonAn());
             intent.putExtra("linkVideo",congThucNauAnList.get(position).getLinkVideo());

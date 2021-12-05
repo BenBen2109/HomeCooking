@@ -49,14 +49,13 @@ public class Product extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_product, container, false);
+        initView();
 
         thucphamAdapter = new ThucPhamAdapter(thucPhamList, mContext);
-        rcvThucpham = (RecyclerView) mView.findViewById(R.id.rcl_product);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvThucpham.setLayoutManager(linearLayoutManager);
         rcvThucpham.setAdapter(thucphamAdapter);
 
-        initView();
         getListThucPham();
 
         //Tìm kiếm
@@ -86,6 +85,7 @@ public class Product extends Fragment {
 
     private void initView() {
         searchView=mView.findViewById(R.id.product_search);
+        rcvThucpham = mView.findViewById(R.id.rcl_product);
     }
 
     private void getListThucPham() {
