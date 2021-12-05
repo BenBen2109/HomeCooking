@@ -72,7 +72,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            popularName = itemView.findViewById(R.id.popularName);
+            popularName = itemView.findViewById(R.id.ttName);
             popularPic = itemView.findViewById(R.id.popularPic);
             itemView.setOnClickListener(this);
 

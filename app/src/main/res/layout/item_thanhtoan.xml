@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemt_thanhtoan"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="90dp"
     android:layout_margin="5dp"
     android:elevation="3dp"
     android:background="@drawable/edt_background">
 
     <ImageView
-        android:id="@+id/ItemProductPic_ThanhToan"
+        android:id="@+id/ttPic"
         android:layout_width="70dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,10 +21,9 @@
         app:srcCompat="@drawable/cat_1" />
 
     <TextView
-        android:id="@+id/popularName_ThanhToan"
+        android:id="@+id/ttName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:text="Tên"
         android:textColor="#6e6e70"
         android:textSize="20sp"
@@ -32,42 +31,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toEndOf="@+id/ItemProductPic_ThanhToan"
+        app:layout_constraintStart_toEndOf="@+id/ttPic"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.26" />
 
-    <EditText
-        android:id="@+id/popularSoLuong_ThanhToan"
+    <TextView
+        android:id="@+id/ttSoLuong"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="32dp"
+        android:background="#FFFFFF"
         android:gravity="center"
-        android:inputType="number"
         android:text="1"
         android:textColor="#6e6e70"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/popularGia_ThanhToan"
+        app:layout_constraintBottom_toTopOf="@id/ttPrice"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toEndOf="@+id/popularName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.387" />
 
     <TextView
-        android:id="@+id/popularGia_ThanhToan"
+        android:id="@+id/ttPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="30dp"
         android:text="Gia"
         android:textColor="#6e6e70"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
-        app:layout_constraintStart_toEndOf="@+id/popularName_ThanhToan"
-        app:layout_constraintTop_toBottomOf="@id/popularSoLuong_ThanhToan"
+        app:layout_constraintTop_toBottomOf="@id/ttSoLuong"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

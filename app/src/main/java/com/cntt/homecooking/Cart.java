@@ -1,9 +1,11 @@
 package com.cntt.homecooking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cntt.homecooking.adapter.GioHangAdapter;
@@ -46,14 +49,38 @@ public class Cart extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView= inflater.inflate(R.layout.fragment_cart, container, false);
-        initView();
 
 //        MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
+        rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
         rcvGiohang.setAdapter(MainActivity.giohangAdapter);
 
 
+        ConstraintLayout btnThanhToan = mView.findViewById(R.id.btnThanhToan);
+
+        btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tongtien=0;
+                if(!MainActivity.gioHangList.isEmpty()){
+                    for (int i=0;i<MainActivity.gioHangList.size();i++){
+                        tongtien+=MainActivity.gioHangList.get(i).getPrice();
+                    }
+                    DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
+
+                    txtTongsanpham.setText(decimalFormat.format(tongtien)+" đ");
+                    txtTongtien.setText(decimalFormat.format(tongtien)+" đ");
+                }
+
+                Intent intent = new Intent(getActivity(),ThanhToan.class);
+                intent.putExtra("tongtien",tongtien);
+                startActivity(intent);
+            }
+        });
+
+
+        initView();
         tinhtongtien();
 
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
@@ -75,7 +102,6 @@ public class Cart extends Fragment {
     }
 
     private void initView() {
-        rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         txtTongtien=mView.findViewById(R.id.textPriceTongTien);
         txtTongsanpham=mView.findViewById(R.id.priceTongSanPham);
     }

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.activities.DetailActivity;
-import com.cntt.homecooking.activities.DetailFormulaActivity;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.squareup.picasso.Picasso;
 
@@ -76,8 +75,8 @@ public class HomeCongThucNauAnAdapter extends RecyclerView.Adapter<HomeCongThucN
 
         public CongThucNauAnViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTencongthucnauan=itemView.findViewById(R.id.popularName);
-            imgHinhcongthucnauan=itemView.findViewById(R.id.ItemProductPic);
+            txtTencongthucnauan=itemView.findViewById(R.id.ttName);
+            imgHinhcongthucnauan=itemView.findViewById(R.id.ttPic);
             itemView.setOnClickListener(this);
         }
 

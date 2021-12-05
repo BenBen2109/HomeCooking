@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.activities.DetailProduct;
-import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
 
@@ -102,8 +101,8 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
 
         public ThucPhamViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTenthucpham=itemView.findViewById(R.id.popularName);
-            imgHinhthucpham=itemView.findViewById(R.id.ItemProductPic);
+            txtTenthucpham=itemView.findViewById(R.id.ttName);
+            imgHinhthucpham=itemView.findViewById(R.id.ttPic);
             itemView.setOnClickListener(this);
         }
 

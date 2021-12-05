@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdapter.CongThucNauAnViewHolder> implements Filterable {
 
@@ -103,8 +102,8 @@ public class CongThucNauAnAdapter extends RecyclerView.Adapter<CongThucNauAnAdap
 
         public CongThucNauAnViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTencongthucnauan=itemView.findViewById(R.id.popularName);
-            imgHinhcongthucnauan=itemView.findViewById(R.id.ItemProductPic);
+            txtTencongthucnauan=itemView.findViewById(R.id.ttName);
+            imgHinhcongthucnauan=itemView.findViewById(R.id.ttPic);
             itemView.setOnClickListener(this);
         }
 
