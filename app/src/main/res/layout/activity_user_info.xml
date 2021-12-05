@@ -32,7 +32,7 @@
                 android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/chamber_icon" />
+                android:src="@drawable/avt_icon" />
 
         </RelativeLayout>
 
