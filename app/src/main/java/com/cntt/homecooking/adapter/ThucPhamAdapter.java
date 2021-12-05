@@ -108,8 +108,8 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
         private RecyclerView recyclerViewProductCate;
         public ThucPhamViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTenthucpham=itemView.findViewById(R.id.popularName);
-            imgHinhthucpham=itemView.findViewById(R.id.ItemProductPic);
+            txtTenthucpham=itemView.findViewById(R.id.ttName);
+            imgHinhthucpham=itemView.findViewById(R.id.ttPic);
             recyclerViewProductCate=itemView.findViewById(R.id.rcl_product_cate);
             itemView.setOnClickListener(this);
         }
