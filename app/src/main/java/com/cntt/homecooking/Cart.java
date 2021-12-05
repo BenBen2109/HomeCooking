@@ -46,15 +46,14 @@ public class Cart extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView= inflater.inflate(R.layout.fragment_cart, container, false);
+        initView();
 
 //        MainActivity.giohangAdapter=new GioHangAdapter(MainActivity.gioHangList,mContext);
-        rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvGiohang.setLayoutManager(linearLayoutManager);
         rcvGiohang.setAdapter(MainActivity.giohangAdapter);
 
 
-        initView();
         tinhtongtien();
 
         swipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
@@ -76,6 +75,7 @@ public class Cart extends Fragment {
     }
 
     private void initView() {
+        rcvGiohang = (RecyclerView) mView.findViewById(R.id.cart_rclview);
         txtTongtien=mView.findViewById(R.id.textPriceTongTien);
         txtTongsanpham=mView.findViewById(R.id.priceTongSanPham);
     }

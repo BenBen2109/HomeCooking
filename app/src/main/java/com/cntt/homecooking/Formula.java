@@ -54,15 +54,14 @@ public class Formula extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_formula, container, false);
-
+        initView();
 
         congthucnauanAdapter = new CongThucNauAnAdapter(congthucnauanList, mContext);
-        rcvCongthucnauan = (RecyclerView) mView.findViewById(R.id.rcl_formula);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvCongthucnauan.setLayoutManager(linearLayoutManager1);
         rcvCongthucnauan.setAdapter(congthucnauanAdapter);
 
-        initView();
+
         getListCongThucNauAn();
 
 
@@ -94,6 +93,7 @@ public class Formula extends Fragment{
 
     private void initView() {
         searchView= mView.findViewById(R.id.formula_search);
+        rcvCongthucnauan = mView.findViewById(R.id.rcl_formula);
     }
 
     private void getListCongThucNauAn() {

@@ -66,6 +66,9 @@ public interface ApiService {
     @GET("api/KhoBepOnlines")
     Call<List<KhoBepOnline>> getListKhoBep();
 
+    @GET("api/ChiTietCongThucNauAns")
+    Call<List<ChiTietCongThucNauAn>> getListChiTietCongThucNauAn();
+
     //----------------------------------------------------------------------//
 
     //Thêm dữ liệu(POST)
