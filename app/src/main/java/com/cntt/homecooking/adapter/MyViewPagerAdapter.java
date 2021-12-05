@@ -1,5 +1,7 @@
 package com.cntt.homecooking.adapter;
 
+import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -45,4 +47,5 @@ public class MyViewPagerAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 5;
     }
+
 }

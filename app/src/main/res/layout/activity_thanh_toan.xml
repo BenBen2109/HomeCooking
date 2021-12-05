@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ecebe4"
     tools:context=".ThanhToan">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Chọn Hình Thức Thanh Toán"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -24,15 +25,15 @@
     <ScrollView
         android:id="@+id/sclView_ThanhToan"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_editor_absoluteX="9dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_rclview_ThanhToan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="98dp" />
@@ -42,9 +43,9 @@
         android:id="@+id/spinner"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:minHeight="48dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,13 +53,14 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/background_cart"
         android:elevation="3dp"
 
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnThanhToan_ThanhToan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
@@ -68,75 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtTongGia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tổng Giá Sản Phẩm:"
-                android:textColor="#373b54"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/priceTongSanPham_ThanhToan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0"
-                android:textColor="#373b54"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtShip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giá Ship:"
-                android:textColor="#373b54"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/priceShip_ThanhToan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0"
-                android:textColor="#373b54"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:background="#707070" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="14dp"
             android:orientation="horizontal">
@@ -155,7 +89,7 @@
                 android:id="@+id/textPriceTongTien_ThanhToan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$0"
+                android:text="0"
                 android:textColor="#373b54"
                 android:textSize="30sp"
                 android:textStyle="bold" />

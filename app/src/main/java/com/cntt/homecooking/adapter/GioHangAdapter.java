@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.cntt.homecooking.Cart;
-import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
@@ -66,6 +66,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                     .fit()
                     .into(holder.imghinhsanpham);
         }
+
+
+
         //Xóa sản phẩm
         holder.layoutDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,12 +172,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
 
         public GioHangViewHolder(@NonNull View itemView) {
             super(itemView);
-            txttensanpham=itemView.findViewById(R.id.popularName);
-            txtgiasanpham=itemView.findViewById(R.id.popularGia);
-            txtsoluong=itemView.findViewById(R.id.popularSoLuong);
-            imghinhsanpham=itemView.findViewById(R.id.ItemProductPic);
+            txttensanpham=itemView.findViewById(R.id.cartName);
+            txtgiasanpham=itemView.findViewById(R.id.cartPrice);
+            txtsoluong=itemView.findViewById(R.id.cartSoLuong);
+            imghinhsanpham=itemView.findViewById(R.id.cartPic);
             swipeRevealLayout=itemView.findViewById(R.id.swipeRevealLayout);
             layoutDelete=itemView.findViewById(R.id.layoutDelete);
+
         }
     }
 }
