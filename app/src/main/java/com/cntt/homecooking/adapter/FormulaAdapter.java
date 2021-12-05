@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cntt.homecooking.LinkYoutube;
 import com.cntt.homecooking.activities.DetailFormulaActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.Formula;
@@ -48,6 +51,10 @@ public class FormulaAdapter extends RecyclerView.Adapter<FormulaAdapter.FormulaV
         holder.formulaName.setText(String.valueOf(alFormula.get(position).getTenCongThuc()));
 //        holder.formulaPic.setImageResource(Integer.valueOf(alFormula.get(position).getHinhAnh()));
 
+        //Trượt ngang recycleView
+        LinearLayoutManager linearLayout = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
+        holder.recyclerViewFormulaCate.setLayoutManager(linearLayout);
+
         if(!alFormula.get(position).getHinhAnh().isEmpty()){
             Picasso.get()
                     .load(alFormula.get(position).getHinhAnh())
@@ -71,12 +78,13 @@ public class FormulaAdapter extends RecyclerView.Adapter<FormulaAdapter.FormulaV
 
         public TextView formulaName;
         public ImageView formulaPic;
-
+        private RecyclerView recyclerViewFormulaCate;
         public FormulaViewHolder(@NonNull View itemView) {
             super(itemView);
 
             formulaName = itemView.findViewById(R.id.formulaName);
             formulaPic = itemView.findViewById(R.id.formulaPic);
+            recyclerViewFormulaCate = itemView.findViewById(R.id.rcl_formula_cate);
             itemView.setOnClickListener(this);
         }
 

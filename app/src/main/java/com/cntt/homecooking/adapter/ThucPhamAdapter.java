@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cntt.homecooking.R;
@@ -42,6 +43,11 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
 
     @Override
     public void onBindViewHolder(@NonNull ThucPhamViewHolder holder, int position) {
+
+        //Trượt ngang recycleView
+//        LinearLayoutManager linearLayout = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
+//        holder.recyclerViewProductCate.setLayoutManager(linearLayout);
+
         ThucPham thucPham=thucPhamList.get(position);
         if(thucPham==null){
             return;
@@ -99,11 +105,12 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
     public class ThucPhamViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView txtTenthucpham;
         private ImageView imgHinhthucpham;
-
+        private RecyclerView recyclerViewProductCate;
         public ThucPhamViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTenthucpham=itemView.findViewById(R.id.popularName);
             imgHinhthucpham=itemView.findViewById(R.id.ItemProductPic);
+            recyclerViewProductCate=itemView.findViewById(R.id.rcl_product_cate);
             itemView.setOnClickListener(this);
         }
 

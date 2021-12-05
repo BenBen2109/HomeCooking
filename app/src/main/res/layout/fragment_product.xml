@@ -44,15 +44,32 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcl_product"
+        android:id="@+id/rcl_product_cate"
         android:layout_width="match_parent"
-        android:layout_height="575dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcl_product_cate">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcl_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </ScrollView>
 
 
 
