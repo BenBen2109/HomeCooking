@@ -43,16 +43,12 @@ public class ThucPhamAdapter extends RecyclerView.Adapter<ThucPhamAdapter.ThucPh
 
     @Override
     public void onBindViewHolder(@NonNull ThucPhamViewHolder holder, int position) {
-
-        //Trượt ngang recycleView
-//        LinearLayoutManager linearLayout = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
-//        holder.recyclerViewProductCate.setLayoutManager(linearLayout);
-
         ThucPham thucPham=thucPhamList.get(position);
         if(thucPham==null){
             return;
         }
-        holder.txtTenthucpham.setText(thucPham.getNameFood());
+
+        holder.txtTenthucpham.setText(thucPham.getNameFood()+" "+thucPham.getSoLuong()+" "+thucPham.getDonViTinh());
         if(!thucPham.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(thucPham.getLinkHinhAnh())

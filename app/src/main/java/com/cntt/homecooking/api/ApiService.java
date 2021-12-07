@@ -1,9 +1,11 @@
 package com.cntt.homecooking.api;
 
 import com.cntt.homecooking.model.ChiTietCongThucNauAn;
+import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.KhachHang;
 import com.cntt.homecooking.model.KhoBepOnline;
+import com.cntt.homecooking.model.LoaiThucPham;
 import com.cntt.homecooking.model.RegisterRequest;
 import com.cntt.homecooking.model.RegisterResponse;
 import com.cntt.homecooking.model.ThucPham;
@@ -68,6 +70,12 @@ public interface ApiService {
 
     @GET("api/ChiTietCongThucNauAns")
     Call<List<ChiTietCongThucNauAn>> getListChiTietCongThucNauAn();
+
+    @GET("api/LoaiThucPhams")
+    Call<List<LoaiThucPham>> getListLoaiThucPham();
+
+    @GET("api/ChuDeCongThucs")
+    Call<List<ChuDeCongThuc>> getListChuDeCongThuc();
 
     //----------------------------------------------------------------------//
 

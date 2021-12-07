@@ -152,6 +152,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onFailure(Call<List<ThucPham>> call, Throwable t) {
             }
         });
+
     }
 
     private void initView() {

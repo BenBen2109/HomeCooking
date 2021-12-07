@@ -474,7 +474,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void sendPostKhoBepOnline(String idKH){
-        mkhoBepOnline=new KhoBepOnline(null,idKH,null);
+        mkhoBepOnline=new KhoBepOnline(null,idKH);
         ApiService.apiService.postKhoBep(mkhoBepOnline).enqueue(new Callback<KhoBepOnline>() {
             @Override
             public void onResponse(Call<KhoBepOnline> call, Response<KhoBepOnline> response) {

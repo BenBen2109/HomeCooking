@@ -44,7 +44,7 @@ public class ChiTietCongThucNauAnAdapter extends RecyclerView.Adapter<ChiTietCon
         for(ThucPham thucPham: thucPhamList){
             if (thucPham.getIdFood().equals(chiTietCongThucNauAn.getIdFood())){
                 holder.txtTen.setText(thucPham.getNameFood());
-                holder.txtSoluong.setText(chiTietCongThucNauAn.getSoLuong()+"");
+                holder.txtSoluong.setText(chiTietCongThucNauAn.getSoLuong()+" "+thucPham.getDonViTinh());
                 if(!thucPham.getLinkHinhAnh().isEmpty()){
                     Picasso.get()
                             .load(thucPham.getLinkHinhAnh())

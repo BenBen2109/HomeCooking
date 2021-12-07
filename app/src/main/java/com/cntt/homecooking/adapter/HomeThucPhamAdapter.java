@@ -42,7 +42,7 @@ public class HomeThucPhamAdapter extends RecyclerView.Adapter<HomeThucPhamAdapte
         if(thucPham==null){
             return;
         }
-        holder.txtTenthucpham.setText(thucPham.getNameFood());
+        holder.txtTenthucpham.setText(thucPham.getNameFood()+" "+thucPham.getSoLuong()+" "+thucPham.getDonViTinh());
         if(!thucPham.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(thucPham.getLinkHinhAnh())

@@ -15,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.cntt.homecooking.adapter.ChuDeCongThucAdapter;
 import com.cntt.homecooking.adapter.CongThucNauAnAdapter;
 
 import com.cntt.homecooking.api.ApiService;
 
+import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.cntt.homecooking.model.CongThucNauAn;
 
 import android.widget.Toast;
@@ -34,8 +36,10 @@ import retrofit2.Response;
 public class Formula extends Fragment{
     private SearchView searchView;
     private List<CongThucNauAn> congthucnauanList=new ArrayList<>();
-    private RecyclerView rcvCongthucnauan;
+    private List<ChuDeCongThuc> chuDeCongThucList=new ArrayList<>();
+    private RecyclerView rcvCongthucnauan,rcvChudecongthuc;
     private CongThucNauAnAdapter congthucnauanAdapter;
+    private ChuDeCongThucAdapter chuDeCongThucAdapter;
 
     private Context mContext;
     private View mView;
@@ -61,8 +65,14 @@ public class Formula extends Fragment{
         rcvCongthucnauan.setLayoutManager(linearLayoutManager1);
         rcvCongthucnauan.setAdapter(congthucnauanAdapter);
 
+        chuDeCongThucAdapter = new ChuDeCongThucAdapter(chuDeCongThucList, mContext);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rcvChudecongthuc.setLayoutManager(linearLayoutManager);
+        rcvChudecongthuc.setAdapter(chuDeCongThucAdapter);
+
 
         getListCongThucNauAn();
+        getListChuDeCongThuc();
 
 
         //Tìm kiếm
@@ -91,11 +101,28 @@ public class Formula extends Fragment{
         return mView;
     }
 
+
+
     private void initView() {
         searchView= mView.findViewById(R.id.formula_search);
         rcvCongthucnauan = mView.findViewById(R.id.rcl_formula);
+        rcvChudecongthuc=mView.findViewById(R.id.rcl_formula_cate);
     }
 
+    private void getListChuDeCongThuc() {
+        ApiService.apiService.getListChuDeCongThuc().enqueue(new Callback<List<ChuDeCongThuc>>() {
+            @Override
+            public void onResponse(Call<List<ChuDeCongThuc>> call, Response<List<ChuDeCongThuc>> response) {
+                chuDeCongThucList.addAll(response.body());
+                chuDeCongThucAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<ChuDeCongThuc>> call, Throwable t) {
+
+            }
+        });
+    }
     private void getListCongThucNauAn() {
         ApiService.apiService.getListCongThucNauAn().enqueue(new Callback<List<CongThucNauAn>>() {
             @Override

@@ -18,11 +18,14 @@ import android.widget.Toast;
 
 import com.cntt.homecooking.adapter.HomeThucPhamAdapter;
 import com.cntt.homecooking.adapter.LikedAdapter;
+import com.cntt.homecooking.adapter.LoaiThucPhamAdapter;
 import com.cntt.homecooking.adapter.ThucPhamAdapter;
 import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.db.DBManager;
 import com.cntt.homecooking.model.LikedModel;
+import com.cntt.homecooking.model.LoaiThucPham;
 import com.cntt.homecooking.model.ThucPham;
+import com.google.android.gms.common.api.Api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +39,9 @@ public class Product extends Fragment {
 
     private SearchView searchView;
     private List<ThucPham> thucPhamList=new ArrayList<>();
-    private RecyclerView rcvThucpham;
+    private List<LoaiThucPham> loaiThucPhamList=new ArrayList<>();
+    private RecyclerView rcvThucpham,rcvLoaithucpham;
+    private LoaiThucPhamAdapter loaiThucPhamAdapter;
     private ThucPhamAdapter thucphamAdapter;
     private Context mContext;
     private View mView;
@@ -51,13 +56,19 @@ public class Product extends Fragment {
         mView = inflater.inflate(R.layout.fragment_product, container, false);
         initView();
 
+
         thucphamAdapter = new ThucPhamAdapter(thucPhamList, mContext);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rcvThucpham.setLayoutManager(linearLayoutManager);
         rcvThucpham.setAdapter(thucphamAdapter);
 
-        getListThucPham();
+        loaiThucPhamAdapter=new LoaiThucPhamAdapter(loaiThucPhamList,mContext);
+        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        rcvLoaithucpham.setLayoutManager(linearLayoutManager1);
+        rcvLoaithucpham.setAdapter(loaiThucPhamAdapter);
 
+        getListThucPham();
+        getListLoaiThucPham();
         //Tìm kiếm
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +94,19 @@ public class Product extends Fragment {
         return mView;
     }
 
-    private void initView() {
-        searchView=mView.findViewById(R.id.product_search);
-        rcvThucpham = mView.findViewById(R.id.rcl_product);
+    private void getListLoaiThucPham() {
+        ApiService.apiService.getListLoaiThucPham().enqueue(new Callback<List<LoaiThucPham>>() {
+            @Override
+            public void onResponse(Call<List<LoaiThucPham>> call, Response<List<LoaiThucPham>> response) {
+                loaiThucPhamList.addAll(response.body());
+                loaiThucPhamAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<LoaiThucPham>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getListThucPham() {
@@ -106,7 +127,11 @@ public class Product extends Fragment {
             }
         });
     }
-
+    private void initView() {
+        searchView=mView.findViewById(R.id.product_search);
+        rcvThucpham = mView.findViewById(R.id.rcl_product);
+        rcvLoaithucpham=mView.findViewById(R.id.rcl_product_cate);
+    }
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -12,9 +12,11 @@ public class KhoBepOnline {
     @SerializedName("idKh")
     @Expose
     private String idKh;
-    @SerializedName("chiTietKhoBep")// "chiTietKhoBeps" bị lỗi
-    @Expose
-    private ChiTietKhoBep chiTietKhoBep;
+
+    public KhoBepOnline(String idKhobep, String idKh) {
+        this.idKhobep = idKhobep;
+        this.idKh = idKh;
+    }
 
     public String getIdKhobep() {
         return idKhobep;
@@ -30,19 +32,5 @@ public class KhoBepOnline {
 
     public void setIdKh(String idKh) {
         this.idKh = idKh;
-    }
-
-    public ChiTietKhoBep getChiTietKhoBeps() {
-        return chiTietKhoBep;
-    }
-
-    public void setChiTietKhoBeps(ChiTietKhoBep chiTietKhoBeps) {
-        this.chiTietKhoBep = chiTietKhoBeps;
-    }
-
-    public KhoBepOnline(String idKhobep, String idKh, ChiTietKhoBep chiTietKhoBeps) {
-        this.idKhobep = idKhobep;
-        this.idKh = idKh;
-        this.chiTietKhoBep = chiTietKhoBeps;
     }
 }
