@@ -2,6 +2,7 @@ package com.cntt.homecooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import com.cntt.homecooking.activities.RegisterActivity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     @Override

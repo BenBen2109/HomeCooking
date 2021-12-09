@@ -1,5 +1,6 @@
 package com.cntt.homecooking;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -20,8 +21,12 @@ import com.cntt.homecooking.adapter.CongThucNauAnAdapter;
 
 import com.cntt.homecooking.api.ApiService;
 
+import com.cntt.homecooking.model.ChiTietChuDeCongThuc;
+import com.cntt.homecooking.model.ChiTietCongThucNauAn;
 import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.cntt.homecooking.model.CongThucNauAn;
+import com.cntt.homecooking.model.LoaiThucPham;
+import com.cntt.homecooking.model.ThucPham;
 
 import android.widget.Toast;
 
@@ -35,11 +40,14 @@ import retrofit2.Response;
 
 public class Formula extends Fragment{
     private SearchView searchView;
-    private List<CongThucNauAn> congthucnauanList=new ArrayList<>();
+    private static List<CongThucNauAn> congthucnauanList=new ArrayList<>();
+    private static List<CongThucNauAn> congthucnauanListold=new ArrayList<>();
     private List<ChuDeCongThuc> chuDeCongThucList=new ArrayList<>();
+    private static List<ChiTietChuDeCongThuc> chiTietChuDeCongThucList=new ArrayList<>();
     private RecyclerView rcvCongthucnauan,rcvChudecongthuc;
-    private CongThucNauAnAdapter congthucnauanAdapter;
     private ChuDeCongThucAdapter chuDeCongThucAdapter;
+    @SuppressLint("StaticFieldLeak")
+    private static CongThucNauAnAdapter congthucnauanAdapter;
 
     private Context mContext;
     private View mView;
@@ -73,6 +81,7 @@ public class Formula extends Fragment{
 
         getListCongThucNauAn();
         getListChuDeCongThuc();
+        getListChiTietChuDeCongThucList();
 
 
         //Tìm kiếm
@@ -102,14 +111,44 @@ public class Formula extends Fragment{
     }
 
 
-
-    private void initView() {
-        searchView= mView.findViewById(R.id.formula_search);
-        rcvCongthucnauan = mView.findViewById(R.id.rcl_formula);
-        rcvChudecongthuc=mView.findViewById(R.id.rcl_formula_cate);
+    public static void clickChuDeCongThuc(String idChuDe){
+        congthucnauanList.clear();
+        if(!idChuDe.isEmpty()){
+            for(ChiTietChuDeCongThuc chiTietChuDeCongThuc: chiTietChuDeCongThucList){
+                if(chiTietChuDeCongThuc.getIdChuDe().equals(idChuDe)){
+                    for (CongThucNauAn congThucNauAn: congthucnauanListold){
+                        if (congThucNauAn.getIdCongThuc().equals(chiTietChuDeCongThuc.getIdCongThuc())){
+                            congthucnauanList.add(congThucNauAn);
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            congthucnauanList.addAll(congthucnauanListold);
+        }
+        congthucnauanAdapter.notifyDataSetChanged();
     }
 
+
+    // GET API List Chi tiết chủ để công thức
+    private void getListChiTietChuDeCongThucList() {
+        ApiService.apiService.getListChiTietChuDeCongThuc().enqueue(new Callback<List<ChiTietChuDeCongThuc>>() {
+            @Override
+            public void onResponse(Call<List<ChiTietChuDeCongThuc>> call, Response<List<ChiTietChuDeCongThuc>> response) {
+                chiTietChuDeCongThucList.addAll(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<ChiTietChuDeCongThuc>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    // GET API List Chủ đề công thức
     private void getListChuDeCongThuc() {
+        chuDeCongThucList.add(new ChuDeCongThuc("","Tất cả","",""));
         ApiService.apiService.getListChuDeCongThuc().enqueue(new Callback<List<ChuDeCongThuc>>() {
             @Override
             public void onResponse(Call<List<ChuDeCongThuc>> call, Response<List<ChuDeCongThuc>> response) {
@@ -123,12 +162,15 @@ public class Formula extends Fragment{
             }
         });
     }
+
+    // GET API List Công thức nấu ăn
     private void getListCongThucNauAn() {
         ApiService.apiService.getListCongThucNauAn().enqueue(new Callback<List<CongThucNauAn>>() {
             @Override
             public void onResponse(Call<List<CongThucNauAn>> call, Response<List<CongThucNauAn>> response) {
                 if(response.isSuccessful()&&response.body()!=null){
-                    congthucnauanList.addAll(response.body());
+                    congthucnauanListold.addAll(response.body());
+                    congthucnauanList.addAll(congthucnauanListold);
                     congthucnauanAdapter.notifyDataSetChanged();
 //                    Log.e("thanhcong1",response.body().toString());
                 }
@@ -140,6 +182,12 @@ public class Formula extends Fragment{
 
             }
         });
+    }
+
+    private void initView() {
+        searchView= mView.findViewById(R.id.formula_search);
+        rcvCongthucnauan = mView.findViewById(R.id.rcl_formula);
+        rcvChudecongthuc=mView.findViewById(R.id.rcl_formula_cate);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.cntt.homecooking;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.cntt.homecooking.adapter.HomeThucPhamAdapter;
@@ -37,12 +39,15 @@ import retrofit2.Response;
 
 public class Product extends Fragment {
 
+
     private SearchView searchView;
-    private List<ThucPham> thucPhamList=new ArrayList<>();
+    private static List<ThucPham> thucPhamList=new ArrayList<>();
+    private static List<ThucPham> thucPhamListold=new ArrayList<>();
     private List<LoaiThucPham> loaiThucPhamList=new ArrayList<>();
     private RecyclerView rcvThucpham,rcvLoaithucpham;
     private LoaiThucPhamAdapter loaiThucPhamAdapter;
-    private ThucPhamAdapter thucphamAdapter;
+    @SuppressLint("StaticFieldLeak")
+    private static ThucPhamAdapter thucphamAdapter;
     private Context mContext;
     private View mView;
 
@@ -94,7 +99,25 @@ public class Product extends Fragment {
         return mView;
     }
 
+    // Hiển thị sản phẩm theo từng loại
+    public static void clickLoaiThucPham(String idLoai) {
+        thucPhamList.clear();
+        if(!idLoai.isEmpty()){
+            for(ThucPham thucPham: thucPhamListold){
+                if(thucPham.getIdLoai().equals(idLoai)){
+                    thucPhamList.add(thucPham);
+                }
+            }
+        }
+        else {
+            thucPhamList.addAll(thucPhamListold);
+        }
+        thucphamAdapter.notifyDataSetChanged();
+    }
+
+    //GET API List Loại thực phẩm
     private void getListLoaiThucPham() {
+        loaiThucPhamList.add(new LoaiThucPham("","Tất cả",""));
         ApiService.apiService.getListLoaiThucPham().enqueue(new Callback<List<LoaiThucPham>>() {
             @Override
             public void onResponse(Call<List<LoaiThucPham>> call, Response<List<LoaiThucPham>> response) {
@@ -109,12 +132,14 @@ public class Product extends Fragment {
         });
     }
 
+    //GET API List Thực phẩm
     private void getListThucPham() {
         ApiService.apiService.getListThucPhams().enqueue(new Callback<List<ThucPham>>() {
             @Override
             public void onResponse(Call<List<ThucPham>> call, Response<List<ThucPham>> response) {
                 if(response.isSuccessful()&&response.body()!=null){
-                    thucPhamList.addAll(response.body());
+                    thucPhamListold.addAll(response.body());
+                    thucPhamList.addAll(thucPhamListold);
                     thucphamAdapter.notifyDataSetChanged();
 //                    Log.e("thanhcong",response.body().toString());
                 }

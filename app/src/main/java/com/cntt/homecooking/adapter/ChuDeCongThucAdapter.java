@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cntt.homecooking.Formula;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.squareup.picasso.Picasso;
@@ -57,7 +59,7 @@ public class ChuDeCongThucAdapter extends RecyclerView.Adapter<ChuDeCongThucAdap
         return 0;
     }
 
-    public class ChuDeCongThucViewHolder extends RecyclerView.ViewHolder{
+    public class ChuDeCongThucViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtChuDeCongThuc;
         private ImageView imgChuDeCongThuc;
 
@@ -65,6 +67,14 @@ public class ChuDeCongThucAdapter extends RecyclerView.Adapter<ChuDeCongThucAdap
             super(itemView);
             txtChuDeCongThuc=itemView.findViewById(R.id.categoryName);
             imgChuDeCongThuc=itemView.findViewById(R.id.categoryPic);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position=getAdapterPosition();
+            ChuDeCongThuc chuDeCongThuc=chuDeCongThucList.get(position);
+            Formula.clickChuDeCongThuc(chuDeCongThuc.getIdChuDe());
         }
     }
 }

@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cntt.homecooking.Product;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.LoaiThucPham;
 import com.squareup.picasso.Picasso;
@@ -34,7 +36,7 @@ public class LoaiThucPhamAdapter extends RecyclerView.Adapter<LoaiThucPhamAdapte
 
     @Override
     public void onBindViewHolder(@NonNull LoaiThucPhamViewHolder holder, int position) {
-        LoaiThucPham loaiThucPham= loaiThucPhamList.get(position);
+        LoaiThucPham loaiThucPham=loaiThucPhamList.get(position);
         if(loaiThucPham==null){
             return;
         }
@@ -70,7 +72,9 @@ public class LoaiThucPhamAdapter extends RecyclerView.Adapter<LoaiThucPhamAdapte
 
         @Override
         public void onClick(View view) {
-
+            int position=getAdapterPosition();
+            LoaiThucPham loaiThucPham=loaiThucPhamList.get(position);
+            Product.clickLoaiThucPham(loaiThucPham.getIdLoai());
         }
     }
 }
