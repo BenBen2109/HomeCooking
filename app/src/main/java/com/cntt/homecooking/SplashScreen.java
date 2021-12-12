@@ -28,11 +28,12 @@ public class SplashScreen extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+        // Lấy KeyHash Facebook
         try {
             PackageInfo info = null;
             try {
                 info = getPackageManager().getPackageInfo(
-                        "com.cntt.homecooking",                  //Insert your own package name.
+                        "com.cntt.homecooking",
                         PackageManager.GET_SIGNATURES);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
