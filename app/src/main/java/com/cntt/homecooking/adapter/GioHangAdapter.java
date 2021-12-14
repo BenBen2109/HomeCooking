@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +22,7 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
-import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
-
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -58,7 +55,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         holder.txttensanpham.setText(gioHang.getNameFood());
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
         holder.txtgiasanpham.setText((decimalFormat.format(gioHang.getPrice())+" đ"));
-        holder.txtsoluong.setText(String.valueOf(gioHang.getSoluong()));
+        holder.txtsoluong.setText(String.valueOf(gioHang.getSoluongmua()));
         if(!gioHang.getLinkHinhAnh().isEmpty()){
             Picasso.get()
                     .load(gioHang.getLinkHinhAnh())

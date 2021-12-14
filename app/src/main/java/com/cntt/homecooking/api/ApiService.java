@@ -1,13 +1,14 @@
 package com.cntt.homecooking.api;
 
-import com.cntt.homecooking.HoaDon;
 import com.cntt.homecooking.model.ChiTietChuDeCongThuc;
 import com.cntt.homecooking.model.ChiTietCongThucNauAn;
+import com.cntt.homecooking.model.ChiTietHoaDonKhachHang;
 import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.cntt.homecooking.model.CongThucNauAn;
 import com.cntt.homecooking.model.HoaDonKhachHang;
 import com.cntt.homecooking.model.KhachHang;
 import com.cntt.homecooking.model.KhoBepOnline;
+import com.cntt.homecooking.model.LoHang;
 import com.cntt.homecooking.model.LoaiThucPham;
 import com.cntt.homecooking.model.RegisterRequest;
 import com.cntt.homecooking.model.RegisterResponse;
@@ -15,29 +16,16 @@ import com.cntt.homecooking.model.ThucPham;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.security.cert.CertificateException;
 import java.util.List;
-import java.util.Queue;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -102,8 +90,13 @@ public interface ApiService {
     @POST("api/KhoBepOnlines")
     Call<KhoBepOnline> postKhoBep(@Body KhoBepOnline khoBepOnline);
 
-    @GET("/api/ChiTietCongThucNauAns")
-    Call<List<ChiTietCongThucNauAn>> getTP();
+    @POST("api/HoaDonKhachHangs")
+    Call<HoaDonKhachHang> postHoaDon(@Body HoaDonKhachHang hoaDonKhachHang);
 
+    @POST("api/LoHangs")
+    Call<LoHang> postLohang(@Body LoHang loHang);
+
+    @POST("api/ChiTietHoaDonKhachHangs")
+    Call<ChiTietHoaDonKhachHang> postChiTietHoaDonKhachHang(@Body ChiTietHoaDonKhachHang chiTietHoaDonKhachHang);
 
 }

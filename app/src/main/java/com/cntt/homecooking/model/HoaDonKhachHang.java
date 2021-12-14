@@ -11,6 +11,16 @@ public class HoaDonKhachHang {
     private String status;
     private String idNv;
 
+    public HoaDonKhachHang(String idInvoice, String idKh, String createdDate, String deliveryDate, int tongTien, String phuongThucThanhToan, String status, String idNv) {
+        this.idInvoice = idInvoice;
+        this.idKh = idKh;
+        this.createdDate = createdDate;
+        this.deliveryDate = deliveryDate;
+        this.tongTien = tongTien;
+        this.phuongThucThanhToan = phuongThucThanhToan;
+        this.status = status;
+        this.idNv = idNv;
+    }
 
     public String getIdInvoice() {
         return idInvoice;

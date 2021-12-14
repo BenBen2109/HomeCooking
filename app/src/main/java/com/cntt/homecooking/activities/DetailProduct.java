@@ -1,7 +1,5 @@
 package com.cntt.homecooking.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cntt.homecooking.Cart;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
-
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
 
@@ -26,8 +24,7 @@ public class DetailProduct extends AppCompatActivity {
     EditText qtyProduct;
 
     String id,name,linkHinhAnh,donViTinh;
-    int soLuong;
-    Integer price,soluong,sotien;
+    Integer price,soluongmua,soluong,sotien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +38,10 @@ public class DetailProduct extends AppCompatActivity {
         price = intent.getIntExtra("price",0);
         linkHinhAnh = intent.getStringExtra("linkHinhAnh");
         donViTinh = intent.getStringExtra("donViTinh");
-        soLuong = intent.getIntExtra("soLuong",0);
+        soluong = intent.getIntExtra("soLuong",0);
 
 
-        detailProductName.setText(name+" "+soLuong+" "+donViTinh);
+        detailProductName.setText(name+" "+soluong+" "+donViTinh);
         productPrice.setText(price+" đ");
         productDetailDVT.setText(donViTinh);
         if(!linkHinhAnh.isEmpty()){
@@ -68,26 +65,27 @@ public class DetailProduct extends AppCompatActivity {
     }
     // Xử lý thêm sản phẩm vào giỏ hàng
     private void addtocart() {
-        soluong=Integer.parseInt(qtyProduct.getText().toString().trim());
+        soluongmua=Integer.parseInt(qtyProduct.getText().toString().trim());
         boolean tontai = false;
         if(MainActivity.gioHangList.size()>0){
             for(int i=0;i<MainActivity.gioHangList.size();i++){
                 if(MainActivity.gioHangList.get(i).getIdFood().equals(id)){
-                    MainActivity.gioHangList.get(i).setSoluong(MainActivity.gioHangList.get(i).getSoluong()+soluong);
-                    MainActivity.gioHangList.get(i).setPrice(MainActivity.gioHangList.get(i).getSoluong()*price);
+                    MainActivity.gioHangList.get(i).setSoluongmua(MainActivity.gioHangList.get(i).getSoluongmua()+soluongmua);
+                    MainActivity.gioHangList.get(i).setSoluong(MainActivity.gioHangList.get(i).getSoluongmua()*soluong);
+                    MainActivity.gioHangList.get(i).setPrice(MainActivity.gioHangList.get(i).getSoluongmua()*price);
                     MainActivity.giohangAdapter.notifyDataSetChanged();
                     tontai=true;
                 }
             }
             if (tontai==false){
-                sotien=soluong*price;
-                MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
+                sotien=soluongmua*price;
+                MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,soluongmua,sotien,donViTinh));
                 MainActivity.giohangAdapter.notifyDataSetChanged();
             }
         }
         else {
-            sotien=soluong*price;
-            MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,sotien,donViTinh));
+            sotien=soluongmua*price;
+            MainActivity.gioHangList.add(new GioHang(id,name,linkHinhAnh,soluong,soluongmua,sotien,donViTinh));
             MainActivity.giohangAdapter.notifyDataSetChanged();
         };
         Toast.makeText(DetailProduct.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
