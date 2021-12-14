@@ -57,28 +57,28 @@ public class UserInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 KhachHang khachHang = new KhachHang(name,email,sdt);
-                updateinfo(khachHang);
+//                updateinfo(khachHang);
             }
         });
 
     }
 
-    private void updateinfo(KhachHang khachHang) {
-        String idKh = DataLocalManager.getUserId();
-        ApiService.apiService.update("KH000001",khachHang).enqueue(new Callback<KhachHang>() {
-            @Override
-            public void onResponse(Call<KhachHang> call, Response<KhachHang> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(UserInfo.this, "success", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(UserInfo.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<KhachHang> call, Throwable t) {
-                Toast.makeText(UserInfo.this, "Eorrirrr", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void updateinfo(KhachHang khachHang) {
+//        String idKh = DataLocalManager.getUserId();
+//        ApiService.apiService.update("KH000001",khachHang).enqueue(new Callback<KhachHang>() {
+//            @Override
+//            public void onResponse(Call<KhachHang> call, Response<KhachHang> response) {
+//                if(response.isSuccessful()){
+//                    Toast.makeText(UserInfo.this, "success", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Toast.makeText(UserInfo.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<KhachHang> call, Throwable t) {
+//                Toast.makeText(UserInfo.this, "Eorrirrr", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }

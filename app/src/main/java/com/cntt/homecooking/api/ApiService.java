@@ -84,6 +84,9 @@ public interface ApiService {
     @GET("api/ChiTietChuDeCongThucs")
     Call<List<ChiTietChuDeCongThuc>> getListChiTietChuDeCongThuc();
 
+    @GET("api/HoaDonKhachHangs")
+    Call<List<HoaDonKhachHang>> getListHoaDonKhachHang();
+
 
     //----------------------------------------------------------------------//
 

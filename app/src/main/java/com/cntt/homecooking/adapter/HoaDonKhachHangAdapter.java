@@ -40,8 +40,8 @@ public class HoaDonKhachHangAdapter extends RecyclerView.Adapter<HoaDonKhachHang
         }
         holder.id_HoaDon.setText(hoaDonKhachHang.getIdInvoice());
         holder.pttt.setText(hoaDonKhachHang.getPhuongThucThanhToan());
-        holder.status.setText(hoaDonKhachHang.getPhuongThucThanhToan());
-        holder.tongtien.setText(hoaDonKhachHang.getTongTien());
+        holder.status.setText(hoaDonKhachHang.getStatus());
+        holder.tongtien.setText(hoaDonKhachHang.getTongTien()+" đ");
 
     }
 

@@ -14,6 +14,7 @@
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/btn_background.xml" value="0.21875" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/btn_no_background.xml" value="0.21875" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/drawable/splash_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/activity_lich_su_hoa_don.xml" value="0.184375" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/activity_my_kitchen.xml" value="0.14945652173913043" />
@@ -26,6 +27,8 @@
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/fragment_notification.xml" value="0.20260416666666667" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/fragment_order.xml" value="0.20260416666666667" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/fragment_product.xml" value="0.1762917933130699" />
+        <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/item_hoadon.xml" value="0.18020833333333333" />
+        <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/item_lichsuhoadon.xml" value="0.18020833333333333" />
         <entry key="..\:/Project/Android/HomeCooking/app/src/main/res/layout/item_product_cate.xml" value="0.1765625" />
         <entry key="..\:/Users/lduyk/Desktop/HomeCooking (Android)/app/src/main/res/drawable/background_recipe.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/lduyk/Desktop/HomeCooking (Android)/app/src/main/res/drawable/background_white.xml" value="0.3728205128205128" />
