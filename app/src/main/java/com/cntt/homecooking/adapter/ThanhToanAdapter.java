@@ -1,23 +1,15 @@
 package com.cntt.homecooking.adapter;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chauthai.swipereveallayout.ViewBinderHelper;
-import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
@@ -47,7 +39,7 @@ public class ThanhToanAdapter extends RecyclerView.Adapter<ThanhToanAdapter.Than
         holder.txttensanpham.setText(gioHang.getNameFood());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.txtgiasanpham.setText((decimalFormat.format(gioHang.getPrice()) + " đ"));
-        holder.txtsoluong.setText(String.valueOf(gioHang.getSoluong()));
+        holder.txtsoluong.setText(String.valueOf(gioHang.getSoluongmua()));
         if (!gioHang.getLinkHinhAnh().isEmpty()) {
             Picasso.get()
                     .load(gioHang.getLinkHinhAnh())

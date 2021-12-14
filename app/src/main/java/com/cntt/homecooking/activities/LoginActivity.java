@@ -25,7 +25,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.api.ApiService;
-
 import com.cntt.homecooking.data_local.DataLocalManager;
 import com.cntt.homecooking.databinding.ActivityLoginBinding;
 import com.cntt.homecooking.model.KhachHang;
@@ -45,7 +44,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -61,7 +59,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.POST;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -309,6 +306,7 @@ public class LoginActivity extends AppCompatActivity {
             DataLocalManager.setUserPhone(userPhone);
 
             String userID=mKhachHang.getIdKh();
+            DataLocalManager.setUserId(userID);
 
             checkKhobep(userID);
 

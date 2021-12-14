@@ -77,10 +77,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
         holder.txtsoluong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogSuasoluong(gioHang.getIdFood(), gioHang.getSoluong());
+                dialogSuasoluong(gioHang.getIdFood(), gioHang.getSoluongmua());
             }
 
-            private void dialogSuasoluong(String idFood,int soluong) {
+            private void dialogSuasoluong(String idFood,int soluongmua) {
                 Dialog dialog=new Dialog(context);
                 dialog.setContentView(R.layout.dialog_soluong);
 
@@ -88,7 +88,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                 Button btnDongy=(Button) dialog.findViewById(R.id.btn_dongy);
                 Button btnHuy=(Button) dialog.findViewById(R.id.btn_huy);
 
-                edtSoluongmoi.setText(String.valueOf(soluong));
+                edtSoluongmoi.setText(String.valueOf(soluongmua));
 
                 btnDongy.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -97,18 +97,22 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.GioHangV
                             Toast.makeText(context, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            int soluongmoi=Integer.parseInt(edtSoluongmoi.getText().toString().trim());
-                            if(soluongmoi==0){
+                            int soluongmuamoi=Integer.parseInt(edtSoluongmoi.getText().toString().trim());
+                            if(soluongmuamoi==0){
                                 xoasanpham(holder);
                                 dialog.dismiss();
                             }
                             else {
+                                int soluongmuahientai=gioHang.getSoluongmua();
                                 int soluonghientai=gioHang.getSoluong();
                                 int giahientai=gioHang.getPrice();
-                                int dongia=giahientai/soluonghientai;
-                                int giamoi=dongia*soluongmoi;
-                                gioHang.setSoluong(soluongmoi);
+                                int soluong=soluonghientai/soluongmuahientai;
+                                int dongia=giahientai/soluongmuahientai;
+                                int giamoi=dongia*soluongmuamoi;
+                                int soluongmoi=soluong*soluongmuamoi;
+                                gioHang.setSoluongmua(soluongmuamoi);
                                 gioHang.setPrice(giamoi);
+                                gioHang.setSoluong(soluongmoi);
                                 notifyDataSetChanged();
                                 Cart.tinhtongtien();
                                 dialog.dismiss();

@@ -24,9 +24,6 @@
         android:theme="@style/Theme.HomeCooking"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activities.OrderSuccessActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.LichSuHoaDon"
             android:exported="false" />
         <activity

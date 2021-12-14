@@ -8,12 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cntt.homecooking.activities.OrderSuccessActivity;
 import com.cntt.homecooking.adapter.ThanhToanAdapter;
 import com.cntt.homecooking.api.ApiService;
 import com.cntt.homecooking.data_local.DataLocalManager;
@@ -155,9 +155,11 @@ public class ThanhToan extends AppCompatActivity {
             public void onResponse(Call<ChiTietHoaDonKhachHang> call, Response<ChiTietHoaDonKhachHang> response) {
                 MainActivity.gioHangList.clear();
                 MainActivity.giohangAdapter.notifyDataSetChanged();
-                Intent intent=new Intent(ThanhToan.this, OrderSuccessActivity.class);
-                startActivity(intent);
+                Cart.tinhtongtien();
+                Toast.makeText(getApplicationContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                 finish();
+                startActivity(intent);
             }
 
             @Override

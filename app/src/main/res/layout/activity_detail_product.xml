@@ -186,7 +186,7 @@
                     android:id="@+id/edt_qty"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.7"
                     android:background="@drawable/background_recipe"
                     android:gravity="center"
                     android:inputType="number"
@@ -194,14 +194,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:ignore="TouchTargetSizeCheck"></EditText>
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:id="@+id/productDetailDVT"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"/>
             </LinearLayout>
 
 

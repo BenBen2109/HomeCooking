@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailProduct extends AppCompatActivity {
 
-    TextView detailProductName,productPrice,productDetailDVT;
+    TextView detailProductName,productPrice;
     ImageView detailproductPic;
     Button btnAddtocart;
     EditText qtyProduct;
@@ -43,7 +43,6 @@ public class DetailProduct extends AppCompatActivity {
 
         detailProductName.setText(name+" "+soluong+" "+donViTinh);
         productPrice.setText(price+" đ");
-        productDetailDVT.setText(donViTinh);
         if(!linkHinhAnh.isEmpty()){
             Picasso.get()
                     .load(linkHinhAnh)
@@ -95,7 +94,6 @@ public class DetailProduct extends AppCompatActivity {
         detailProductName=findViewById(R.id.detailProductName);
         productPrice=findViewById(R.id.productPrice);
         detailproductPic=findViewById(R.id.detailproductPic);
-        productDetailDVT=findViewById(R.id.productDetailDVT);
         btnAddtocart=findViewById(R.id.btn_add_to_cart);
         qtyProduct=findViewById(R.id.edt_qty);
     }
