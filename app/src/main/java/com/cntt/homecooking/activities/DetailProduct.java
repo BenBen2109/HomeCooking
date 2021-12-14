@@ -14,8 +14,7 @@ import android.widget.Toast;
 import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.MainActivity;
 import com.cntt.homecooking.R;
-import com.cntt.homecooking.adapter.GioHangAdapter;
-import com.cntt.homecooking.databinding.ActivityDetailProductBinding;
+
 import com.cntt.homecooking.model.GioHang;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +26,7 @@ public class DetailProduct extends AppCompatActivity {
     EditText qtyProduct;
 
     String id,name,linkHinhAnh,donViTinh;
+    int soLuong;
     Integer price,soluong,sotien;
 
     @Override
@@ -41,9 +41,10 @@ public class DetailProduct extends AppCompatActivity {
         price = intent.getIntExtra("price",0);
         linkHinhAnh = intent.getStringExtra("linkHinhAnh");
         donViTinh = intent.getStringExtra("donViTinh");
+        soLuong = intent.getIntExtra("soLuong",0);
 
 
-        detailProductName.setText(name);
+        detailProductName.setText(name+" "+soLuong+" "+donViTinh);
         productPrice.setText(price+" đ");
         productDetailDVT.setText(donViTinh);
         if(!linkHinhAnh.isEmpty()){

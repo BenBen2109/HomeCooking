@@ -89,6 +89,7 @@ public class HomeThucPhamAdapter extends RecyclerView.Adapter<HomeThucPhamAdapte
             intent.putExtra("price",thucPhamList.get(position).getPrice());
             intent.putExtra("linkHinhAnh",thucPhamList.get(position).getLinkHinhAnh());
             intent.putExtra("donViTinh",thucPhamList.get(position).getDonViTinh());
+            intent.putExtra("soLuong",thucPhamList.get(position).getSoLuong());
 
             context.startActivity(intent);
         }

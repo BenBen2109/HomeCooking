@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cntt.homecooking.activities.LichSuHoaDon;
 import com.cntt.homecooking.activities.LoginActivity;
 import com.cntt.homecooking.activities.UserInfo;
-import com.cntt.homecooking.data_local.MySharedPreferences;
 import com.cntt.homecooking.databinding.FragmentMeBinding;
 import com.cntt.homecooking.model.KhachHang;
 
@@ -31,7 +31,7 @@ public class Me extends Fragment  {
 
     private KhachHang kh;
 
-    private ConstraintLayout user_info,logOut;
+    private ConstraintLayout user_info,logOut,lsDonHang;
     TextView txt1;
 
     private View mView;
@@ -46,6 +46,15 @@ public class Me extends Fragment  {
 
         user_info=binding.userInfo;
         logOut=binding.logOut;
+        lsDonHang=binding.lsdonhang;
+
+        lsDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), LichSuHoaDon.class);
+                startActivity(in);
+            }
+        });
 
 
 

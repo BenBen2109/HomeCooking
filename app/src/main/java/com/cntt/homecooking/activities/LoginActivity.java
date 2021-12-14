@@ -391,10 +391,11 @@ public class LoginActivity extends AppCompatActivity {
             String userPhone = mKhachHang.getSdt();
             DataLocalManager.setUserPhone(userPhone);
 
-            String userID=mKhachHang.getIdKh();
+            String useriD=mKhachHang.getIdKh();
+            DataLocalManager.setUserId(useriD);
 
 
-            checkKhobep(userID);
+            checkKhobep(useriD);
 
 
             Intent in = new Intent(LoginActivity.this, MainActivity.class);

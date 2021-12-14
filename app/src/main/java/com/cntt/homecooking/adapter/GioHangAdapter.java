@@ -23,6 +23,7 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.cntt.homecooking.Cart;
 import com.cntt.homecooking.R;
 import com.cntt.homecooking.model.GioHang;
+import com.cntt.homecooking.model.ThucPham;
 import com.squareup.picasso.Picasso;
 
 

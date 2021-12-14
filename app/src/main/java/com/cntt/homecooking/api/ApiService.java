@@ -1,9 +1,11 @@
 package com.cntt.homecooking.api;
 
+import com.cntt.homecooking.HoaDon;
 import com.cntt.homecooking.model.ChiTietChuDeCongThuc;
 import com.cntt.homecooking.model.ChiTietCongThucNauAn;
 import com.cntt.homecooking.model.ChuDeCongThuc;
 import com.cntt.homecooking.model.CongThucNauAn;
+import com.cntt.homecooking.model.HoaDonKhachHang;
 import com.cntt.homecooking.model.KhachHang;
 import com.cntt.homecooking.model.KhoBepOnline;
 import com.cntt.homecooking.model.LoaiThucPham;
@@ -32,6 +34,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -81,6 +84,7 @@ public interface ApiService {
     @GET("api/ChiTietChuDeCongThucs")
     Call<List<ChiTietChuDeCongThuc>> getListChiTietChuDeCongThuc();
 
+
     //----------------------------------------------------------------------//
 
     //Thêm dữ liệu(POST)
@@ -97,4 +101,6 @@ public interface ApiService {
 
     @GET("/api/ChiTietCongThucNauAns")
     Call<List<ChiTietCongThucNauAn>> getTP();
+
+
 }

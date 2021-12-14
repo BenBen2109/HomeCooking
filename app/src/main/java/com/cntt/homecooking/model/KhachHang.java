@@ -14,6 +14,12 @@ public class KhachHang implements Serializable {
     private KhoBepOnline khoBepOnline;
     private TheoDoiThucPham theoDoiThucPham;
 
+    public KhachHang(String name, String email, String sdt) {
+        this.name = name;
+        this.email = email;
+        this.sdt = sdt;
+    }
+
     public String getIdKh() {
         return idKh;
     }

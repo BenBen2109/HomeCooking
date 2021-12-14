@@ -8,6 +8,7 @@ public class DataLocalManager {
     private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
     private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
     private static final String PREF_USER_IDBEP = "PREF_USER_IDBEP";
+    private static final String PREF_USER_ID = "PREF_USER_ID";
     private static DataLocalManager instance;
     private MySharedPreferences mySharedPreferences;
 
@@ -36,6 +37,13 @@ public class DataLocalManager {
     }
     public static String getUserName(){
         return DataLocalManager.getInstance().mySharedPreferences.getStringValue(PREF_USER_NAME);
+    }
+
+    public static void setUserId(String userId){
+        DataLocalManager.getInstance().mySharedPreferences.putStringValue(PREF_USER_ID,userId);
+    }
+    public static String getUserId(){
+        return DataLocalManager.getInstance().mySharedPreferences.getStringValue(PREF_USER_ID);
     }
 
     public static void setUserEmail(String userEmail){

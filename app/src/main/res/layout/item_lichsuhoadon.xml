@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/cat_1" />
 
         <TextView
-            android:id="@+id/Id_HoaDon"
+            android:id="@+id/id_HoaDon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -39,48 +39,47 @@
             app:layout_constraintVertical_bias="0.26" />
 
         <TextView
-            android:id="@+id/popularSoLuong_HoaDon"
+            android:id="@+id/tongtien"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="56dp"
             android:background="#FFFFFF"
             android:gravity="center"
-            android:text="1"
+            android:text="Giá"
             android:textColor="#6e6e70"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/popularGia"
+            app:layout_constraintBottom_toTopOf="@id/status"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.387" />
 
         <TextView
-            android:id="@+id/popularGia"
+            android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:text="Gia"
+            android:text="Tinh trang"
             android:textColor="#6e6e70"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popularSoLuong_HoaDon"
+            app:layout_constraintEnd_toEndOf="@+id/tongtien"
+            app:layout_constraintStart_toStartOf="@+id/tongtien"
+            app:layout_constraintTop_toBottomOf="@id/tongtien"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/PTTK_HoaDon"
+            android:id="@+id/pttt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="204dp"
-            android:text="PTTK"
+            android:text="pttt"
             android:textColor="#6e6e70"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Id_HoaDon"
+            app:layout_constraintStart_toStartOf="@+id/id_HoaDon"
+            app:layout_constraintTop_toBottomOf="@id/id_HoaDon"
             app:layout_constraintVertical_bias="0.45" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

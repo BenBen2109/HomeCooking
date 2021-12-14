@@ -9,10 +9,7 @@ public class HoaDonKhachHang {
     private int tongTien;
     private String phuongThucThanhToan;
     private String status;
-    private String idKhNavigation;
-    private String idNvNavigation;
-    private String chiTietHoaDonKhachHangs;
-    private String chiTietKhoBeps;
+    private String idNv;
 
 
     public String getIdInvoice() {
@@ -71,35 +68,11 @@ public class HoaDonKhachHang {
         this.status = status;
     }
 
-    public String getIdKhNavigation() {
-        return idKhNavigation;
+    public String getIdNv() {
+        return idNv;
     }
 
-    public void setIdKhNavigation(String idKhNavigation) {
-        this.idKhNavigation = idKhNavigation;
-    }
-
-    public String getIdNvNavigation() {
-        return idNvNavigation;
-    }
-
-    public void setIdNvNavigation(String idNvNavigation) {
-        this.idNvNavigation = idNvNavigation;
-    }
-
-    public String getChiTietHoaDonKhachHangs() {
-        return chiTietHoaDonKhachHangs;
-    }
-
-    public void setChiTietHoaDonKhachHangs(String chiTietHoaDonKhachHangs) {
-        this.chiTietHoaDonKhachHangs = chiTietHoaDonKhachHangs;
-    }
-
-    public String getChiTietKhoBeps() {
-        return chiTietKhoBeps;
-    }
-
-    public void setChiTietKhoBeps(String chiTietKhoBeps) {
-        this.chiTietKhoBeps = chiTietKhoBeps;
+    public void setIdNv(String idNv) {
+        this.idNv = idNv;
     }
 }
