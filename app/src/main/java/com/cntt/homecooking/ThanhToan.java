@@ -111,7 +111,7 @@ public class ThanhToan extends AppCompatActivity {
     }
     //POST Hóa đơn sau khi đã xác nhận thanh toán
     private void postHoadon() {
-        HoaDonKhachHang hoaDonKhachHang=new HoaDonKhachHang(null, DataLocalManager.getUserId(),null,null,tongtien,"COD","Chờ xác nhận",null);
+        HoaDonKhachHang hoaDonKhachHang=new HoaDonKhachHang(null, DataLocalManager.getUserId(),null,null,tongtien,"COD","Chưa giao",null);
         ApiService.apiService.postHoaDon(hoaDonKhachHang).enqueue(new Callback<HoaDonKhachHang>() {
             @Override
             public void onResponse(Call<HoaDonKhachHang> call, Response<HoaDonKhachHang> response) {
