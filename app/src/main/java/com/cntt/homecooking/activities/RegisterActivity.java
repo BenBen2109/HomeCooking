@@ -28,7 +28,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
 
-    TextInputLayout edtName,edtEmail,edtPassword1,edtPassword2;
+    TextInputLayout edtName,edtEmail,edtPassword1,edtPassword2,edtDC;
     TextView txtError;
     Button btnRegister;
 
@@ -46,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterRequest registerRequest = new RegisterRequest();
                 registerRequest.setName(edtName.getEditText().getText().toString());
                 registerRequest.setEmail(edtEmail.getEditText().getText().toString());
+                registerRequest.setDiaChi(edtDC.getEditText().getText().toString());
                 registerRequest.setPassword(edtPassword1.getEditText().getText().toString());
                 clickRegister(registerRequest);
             }
@@ -270,6 +271,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtPassword2=binding.regMk2;
         txtError=binding.txtError;
         btnRegister=binding.btnRegister;
+        edtDC=binding.regDiachi;
     }
 
 }
