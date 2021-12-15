@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class UserInfo extends AppCompatActivity {
 
 
-    private EditText user_Name,user_Email,user_Phone;
+    private TextView user_Name,user_Email,user_Phone,user_Address;
     private Button update;
 
     KhachHang khachHang;
@@ -38,7 +38,7 @@ public class UserInfo extends AppCompatActivity {
         user_Name = findViewById(R.id.userName);
         user_Email = findViewById(R.id.userEmail);
         user_Phone = findViewById(R.id.userPhone);
-        update = findViewById(R.id.update);
+        user_Address = findViewById(R.id.userAddress);
 
         String userName = DataLocalManager.getUserName();
         user_Name.setText(userName.toString());
@@ -49,17 +49,8 @@ public class UserInfo extends AppCompatActivity {
         String userPhone = DataLocalManager.getUserPhone();
         user_Phone.setText(userPhone.toString());
 
-        String name = user_Name.getText().toString().trim();
-        String email = user_Email.getText().toString().trim();
-        String sdt = user_Phone.getText().toString().trim();
-
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KhachHang khachHang = new KhachHang(name,email,sdt);
-//                updateinfo(khachHang);
-            }
-        });
+        String userAddress = DataLocalManager.getUserAddress();
+        user_Address.setText(userAddress.toString());
 
     }
 

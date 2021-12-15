@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
 
     TextInputLayout edtName,edtEmail,edtPassword1,edtPassword2,edtDC;
-    TextView txtError;
+    TextView txtError,login;
     Button btnRegister;
 
     @Override
@@ -38,6 +38,14 @@ public class RegisterActivity extends AppCompatActivity {
         binding=ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initView();
+
+        binding.inLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inte = new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(inte);
+            }
+        });
 
         // Click đăng ký
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -272,6 +280,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtError=binding.txtError;
         btnRegister=binding.btnRegister;
         edtDC=binding.regDiachi;
+        login=binding.inLogin;
     }
 
 }

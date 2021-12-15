@@ -305,11 +305,13 @@ public class LoginActivity extends AppCompatActivity {
             String userPhone = mKhachHang.getSdt();
             DataLocalManager.setUserPhone(userPhone);
 
+            String userAddress = mKhachHang.getDiaChi();
+            DataLocalManager.setUserAddress(userAddress);
+
             String userID=mKhachHang.getIdKh();
             DataLocalManager.setUserId(userID);
 
             checkKhobep(userID);
-
 
 
             Intent in = new Intent(LoginActivity.this, MainActivity.class);
@@ -391,6 +393,9 @@ public class LoginActivity extends AppCompatActivity {
 
             String useriD=mKhachHang.getIdKh();
             DataLocalManager.setUserId(useriD);
+
+            String userAddress = mKhachHang.getDiaChi();
+            DataLocalManager.setUserAddress(userAddress);
 
 
             checkKhobep(useriD);

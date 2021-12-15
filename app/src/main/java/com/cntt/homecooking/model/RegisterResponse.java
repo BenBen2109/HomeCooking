@@ -3,7 +3,16 @@ package com.cntt.homecooking.model;
 public class RegisterResponse {
     private String name;
     private String email;
+    private String diaChi;
     private String password;
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
 
     public String getName() {
         return name;
