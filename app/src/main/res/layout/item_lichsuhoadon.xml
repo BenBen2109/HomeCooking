@@ -29,25 +29,25 @@
             android:layout_marginStart="32dp"
             android:text="ID"
             android:textColor="#6e6e70"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toEndOf="@+id/ItemProductPic_HoaDon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.26" />
+            app:layout_constraintVertical_bias="0.255" />
 
         <TextView
             android:id="@+id/tongtien"
-            android:layout_width="48dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="56dp"
+            android:layout_marginEnd="48dp"
             android:background="#FFFFFF"
             android:gravity="center"
             android:text="Giá"
             android:textColor="#6e6e70"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/status"
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="Tinh trang"
             android:textColor="#6e6e70"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tongtien"
@@ -75,12 +75,12 @@
             android:layout_height="wrap_content"
             android:text="pttt"
             android:textColor="#6e6e70"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/id_HoaDon"
             app:layout_constraintTop_toBottomOf="@id/id_HoaDon"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintVertical_bias="0.49" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
